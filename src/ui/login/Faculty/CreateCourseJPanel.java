@@ -190,6 +190,16 @@ public class CreateCourseJPanel extends javax.swing.JPanel {
             Price = Float.parseFloat(price);
             Credits = Integer.parseInt(credits);
             CourseID = Integer.parseInt(course_id);
+        }
+        catch(Exception e){
+          JOptionPane.showMessageDialog(this, "Alphabets, white space or specials characters encountered \nin Floting or Numberical Data type fields","ERROR",JOptionPane.ERROR_MESSAGE);
+          return;
+        }
+        
+        if(course_name.isBlank() || course_id.isBlank() || price.isBlank() || credits.isBlank() || region.isBlank() || lang.isBlank()){
+             JOptionPane.showMessageDialog(this, "All fields mandatory !","WARNING",JOptionPane.WARNING_MESSAGE);
+        }
+        else{
             Course course = new Course();
             course.setCourseId(CourseID);
             course.setCourseName(course_name);
@@ -202,9 +212,6 @@ public class CreateCourseJPanel extends javax.swing.JPanel {
             course.setSemester(Semester.getSemester());
             courseCatalog.addCourseToCourseList(course);
             JOptionPane.showMessageDialog(this, "Course Created Successfully");
-        }
-        catch(Exception e){
-          e.printStackTrace();
         }
         
     }//GEN-LAST:event_saveBtnActionPerformed
