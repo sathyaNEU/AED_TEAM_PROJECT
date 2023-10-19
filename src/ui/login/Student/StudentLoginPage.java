@@ -115,7 +115,7 @@ public class StudentLoginPage extends javax.swing.JPanel {
         String student_id = this.studentIdTextField.getText();
         String pwd = String.valueOf(this.pwdTextField.getPassword());
         if(student_id.isBlank() || pwd.isBlank()){
-            JOptionPane.showMessageDialog(this, "Admin id or password is emopty","ERROR",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Admin id or password is empty","ERROR",JOptionPane.ERROR_MESSAGE);
         }
         else{
             Student student = studentDir.getStudentByUserId(student_id);
@@ -129,6 +129,9 @@ public class StudentLoginPage extends javax.swing.JPanel {
                 else
                     JOptionPane.showMessageDialog(this, "Student id or password is incorrect","ERROR",JOptionPane.ERROR_MESSAGE);   
                 
+            }
+            else{
+               JOptionPane.showMessageDialog(this, "Student Account does not exist","ERROR",JOptionPane.ERROR_MESSAGE);   
             }
             
         }
