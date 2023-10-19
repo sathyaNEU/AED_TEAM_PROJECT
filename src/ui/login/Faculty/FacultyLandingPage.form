@@ -37,16 +37,15 @@
                           </Group>
                       </Group>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="createCourseBtn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                              <Component id="editCourseBtn" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="backBtn" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="backBtn" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="createCourseBtn" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                          <Component id="editCourseBtn" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                          <Component id="manageScheduleBtn" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="318" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -77,6 +76,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="createCourseBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="editCourseBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="manageScheduleBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="160" max="32767" attributes="0"/>
               <Component id="backBtn" min="-2" max="-2" attributes="0"/>
@@ -173,6 +173,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="manageScheduleBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Manage Schedules"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageScheduleBtnActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

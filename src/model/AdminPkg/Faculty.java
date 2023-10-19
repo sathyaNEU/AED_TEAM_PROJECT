@@ -5,7 +5,8 @@
 package model.AdminPkg;
 
 import java.util.ArrayList;
-import model.DateAndTime.TimeSchedule;
+import model.DateAndTime.CourseTimeSchedule;
+import model.DateAndTime.MeetTimeSchedule;
 
 
 
@@ -19,9 +20,13 @@ public class Faculty {
     String faculty_id;
     String pwd;
     int rating;
+    ArrayList<MeetTimeSchedule> meetTimeScheduleList;    
+    Boolean isAccActive;
+    Boolean isAuthToUpdateInfo;
 
     public Faculty() {
        rating = 0;
+       meetTimeScheduleList = new ArrayList<>();
     }
     
     
@@ -33,9 +38,6 @@ public class Faculty {
     public void setRating(int rating) {
         this.rating+=rating;
     }
-    ArrayList<TimeSchedule> allScheduleList;
-    Boolean isAccActive;
-    Boolean isAuthToUpdateInfo;
 
     public Boolean getIsAccActive() {
         return isAccActive;
@@ -88,5 +90,18 @@ public class Faculty {
     public String toString(){
         return faculty_id;
     }
+
+    public ArrayList<MeetTimeSchedule> getMeetTimeScheduleList() {
+        return meetTimeScheduleList;
+    }
       
+    public void addTimeSchedule(String day, String time){
+        MeetTimeSchedule meetTimeSchedule = new MeetTimeSchedule();
+        MeetTimeSchedule.incCounter();
+        meetTimeSchedule.setBooking_id(MeetTimeSchedule.getCounter());
+        meetTimeSchedule.setDay(day);
+        meetTimeSchedule.setTiming(time);
+        meetTimeSchedule.setActive(true);
+        meetTimeScheduleList.add(meetTimeSchedule);
+    }
 }

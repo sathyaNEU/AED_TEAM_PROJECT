@@ -25,6 +25,7 @@ public class FacultyLandingPage extends javax.swing.JPanel {
     StudentDirectory studentDir;
     Faculty faculty;
     CourseCatalog courseCatalog;
+    
     public FacultyLandingPage(JPanel userProcessContainer, StudentDirectory studentDir,Faculty faculty,CourseCatalog courseCatalog) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -54,6 +55,7 @@ public class FacultyLandingPage extends javax.swing.JPanel {
         editCourseBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         refreshBtn = new javax.swing.JButton();
+        manageScheduleBtn = new javax.swing.JButton();
 
         jLabel1.setText("Welcome");
 
@@ -98,6 +100,13 @@ public class FacultyLandingPage extends javax.swing.JPanel {
             }
         });
 
+        manageScheduleBtn.setText("Manage Schedules");
+        manageScheduleBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageScheduleBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,14 +127,14 @@ public class FacultyLandingPage extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(104, 104, 104))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(createCourseBtn)
-                                .addGap(44, 44, 44)
-                                .addComponent(editCourseBtn))
-                            .addComponent(backBtn))
-                        .addGap(318, 318, 318)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(backBtn)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(createCourseBtn)
+                            .addGap(44, 44, 44)
+                            .addComponent(editCourseBtn)
+                            .addGap(45, 45, 45)
+                            .addComponent(manageScheduleBtn))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -147,7 +156,8 @@ public class FacultyLandingPage extends javax.swing.JPanel {
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createCourseBtn)
-                    .addComponent(editCourseBtn))
+                    .addComponent(editCourseBtn)
+                    .addComponent(manageScheduleBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
                 .addComponent(backBtn)
                 .addGap(145, 145, 145))
@@ -176,6 +186,13 @@ public class FacultyLandingPage extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_editCourseBtnActionPerformed
 
+    private void manageScheduleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageScheduleBtnActionPerformed
+        // TODO add your handling code here:
+        ManageScheduleJPanel manageSchedulePanel = new ManageScheduleJPanel(userProcessContainer, studentDir, faculty);
+        this.userProcessContainer.add("manageSchedulePanel",manageSchedulePanel);
+        ((CardLayout)this.userProcessContainer.getLayout()).next(userProcessContainer);
+    }//GEN-LAST:event_manageScheduleBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
@@ -183,6 +200,7 @@ public class FacultyLandingPage extends javax.swing.JPanel {
     private javax.swing.JButton editCourseBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton manageScheduleBtn;
     private javax.swing.JTable profSpecTable;
     private javax.swing.JLabel ratingTextArea;
     private javax.swing.JButton refreshBtn;

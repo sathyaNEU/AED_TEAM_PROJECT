@@ -6,7 +6,7 @@ package model.CoursePkg;
 
 import java.util.ArrayList;
 import model.AdminPkg.Faculty;
-import model.DateAndTime.TimeSchedule;
+import model.DateAndTime.CourseTimeSchedule;
 
 /**
  *
@@ -20,7 +20,7 @@ public class Course {
     private String region;
     private String lang;
     Faculty faculty;
-    ArrayList<TimeSchedule> timeScheduleList;
+    ArrayList<CourseTimeSchedule> courseTimeScheduleList;
     private String semester;
     
     public String getRegion() {
@@ -88,15 +88,16 @@ public class Course {
         this.courseName = courseName;
     }
         
-    public ArrayList<TimeSchedule> getTimeScheduleList(){
-        return timeScheduleList;
+    public ArrayList<CourseTimeSchedule> getCourseTimeScheduleList(){
+        return courseTimeScheduleList;
     }
     
     public void addTimeSchedule(String day, String timings){
-        TimeSchedule timeSchedule = new TimeSchedule();
+        CourseTimeSchedule timeSchedule = new CourseTimeSchedule();
         timeSchedule.setDay(day);
         timeSchedule.setTiming(timings);
-        timeScheduleList.add(timeSchedule);
+        timeSchedule.setActive(true);
+        courseTimeScheduleList.add(timeSchedule);
     }
 
      @Override

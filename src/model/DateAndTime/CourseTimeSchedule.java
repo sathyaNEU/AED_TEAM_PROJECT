@@ -10,12 +10,12 @@ import java.util.ArrayList;
  *
  * @author Sathya
  */
-public class TimeSchedule {
+public class CourseTimeSchedule {
     String day;
     String timing;
     boolean active;
 
-    public TimeSchedule() {
+    public CourseTimeSchedule() {
         this.active = true;
     }
 
