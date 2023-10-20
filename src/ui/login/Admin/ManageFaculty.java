@@ -250,6 +250,10 @@ public class ManageFaculty extends javax.swing.JPanel {
             }
             else {
                 this.faculty = faculty;
+                this.isAccDisabled.setEnabled(false);
+                this.isAuthToUpdateInfo.setEnabled(false);
+                this.isAccDisabled.setSelected(!this.faculty.getIsAccActive());
+                this.isAuthToUpdateInfo.setSelected(this.faculty.getIsAuthToUpdateInfo());
                 this.facultyIdTextArea.setText(id);
                 this.pwdTextArea.setText(faculty.getPwd());
                 hideInOutPanel.setVisible(true);   

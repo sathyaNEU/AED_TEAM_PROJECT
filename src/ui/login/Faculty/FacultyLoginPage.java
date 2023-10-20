@@ -124,7 +124,7 @@ public class FacultyLoginPage extends javax.swing.JPanel {
         else{
             Faculty faculty = this.facultyDir.getFacultyByFacultyId(faculty_id);
             if(faculty!=null){
-                if(faculty.getPwd().equals(pwd)){
+                if(faculty.getPwd().equals(pwd) && faculty.getIsAccActive()==true ){
                     FacultyLandingPage facultyLandingPage = new FacultyLandingPage(userProcessContainer,studentDir, faculty, courseCatalog);
                     this.userProcessContainer.add("facultyLandingPage", facultyLandingPage);
                     ((CardLayout)userProcessContainer.getLayout()).next(userProcessContainer);

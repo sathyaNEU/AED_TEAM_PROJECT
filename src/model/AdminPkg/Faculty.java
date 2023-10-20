@@ -27,6 +27,9 @@ public class Faculty {
     public Faculty() {
        rating = 0;
        meetTimeScheduleList = new ArrayList<>();
+        isAccActive=true;
+        isAuthToUpdateInfo=false;
+   
     }
     
     

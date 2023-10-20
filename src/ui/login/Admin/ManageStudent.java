@@ -178,6 +178,10 @@ public class ManageStudent extends javax.swing.JPanel {
                 this.student = student;
                 this.studentIdTextArea.setText(id);
                 this.pwdTextArea.setText(student.getPwd());
+                this.isAccDisabled.setEnabled(false);
+                this.isAuthToUpdateInfo.setEnabled(false);
+                this.isAccDisabled.setSelected(!this.student.getIsAccActive());
+                this.isAuthToUpdateInfo.setSelected(this.student.getIsAuthToUpdateInfo());
                 hideInOutPanel.setVisible(true);   
             }      
         }

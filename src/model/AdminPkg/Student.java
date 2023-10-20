@@ -16,6 +16,11 @@ public class Student {
     String domain;
     Boolean isAccActive;
     Boolean isAuthToUpdateInfo;
+    
+    public Student(){
+        isAccActive=true;
+        isAuthToUpdateInfo=false;
+    }
 
     public Boolean getIsAccActive() {
         return isAccActive;

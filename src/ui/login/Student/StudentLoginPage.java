@@ -120,7 +120,7 @@ public class StudentLoginPage extends javax.swing.JPanel {
         else{
             Student student = studentDir.getStudentByUserId(student_id);
             if(student!=null){
-                if(student.getPwd().equals(pwd)){
+                if(student.getPwd().equals(pwd) && student.getIsAccActive()==true){
                     StudentLandingPage studentProfileJPanel = new StudentLandingPage(userProcessContainer, courseCatalog, student);
                     userProcessContainer.add("studentProfileJPanel",studentProfileJPanel);
                     CardLayout cardLayout = (CardLayout)userProcessContainer.getLayout();
