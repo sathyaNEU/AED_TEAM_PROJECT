@@ -6,37 +6,41 @@ package model.AdminPkg;
 
 import java.util.ArrayList;
 
-
-
 /**
  *
  * @author Sathya
  */
 public class FacultyDirectory {
+
     ArrayList<Faculty> facultyDir;
-    
-    public FacultyDirectory(){
+
+    public FacultyDirectory() {
         facultyDir = new ArrayList<>();
     }
-    
-    public void addFacultyToFacultyDir(Faculty faculty){
+
+    public void addFacultyToFacultyDir(Faculty faculty) {
         facultyDir.add(faculty);
     }
-    
-    public void removeStudentFromStudentDir(Faculty faculty){
+
+    public void removeStudentFromStudentDir(Faculty faculty) {
         facultyDir.remove(faculty);
     }
-    
-    public Faculty getFacultyByFacultyId(String faculty_id){
-        for(Faculty faculty : facultyDir)
-            if(faculty.getFaculty_id().equals(faculty_id))
+
+    public Faculty getFacultyByFacultyId(String faculty_id) {
+        for (Faculty faculty : facultyDir) {
+            if (faculty.getFaculty_id().equals(faculty_id)) {
                 return faculty;
-        return null;     
+            }
+        }
+        return null;
     }
-    public boolean doesFacultyProfileExist(String faculty_id){
-        for(Faculty faculty : facultyDir)
-            if(faculty.getFaculty_id().equals(faculty_id))
+
+    public boolean doesFacultyProfileExist(String faculty_id) {
+        for (Faculty faculty : facultyDir) {
+            if (faculty.getFaculty_id().equals(faculty_id)) {
                 return true;
+            }
+        }
         return false;
     }
 }

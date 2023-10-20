@@ -21,7 +21,7 @@ public class CreateStudentCredentials extends javax.swing.JPanel {
      */
     StudentDirectory studentDir;
     JPanel userProcessContainer;
-    
+
     public CreateStudentCredentials(JPanel userProcessContainer, StudentDirectory studentDir) {
         initComponents();
         this.studentDir = studentDir;
@@ -154,12 +154,11 @@ public class CreateStudentCredentials extends javax.swing.JPanel {
         String pwd = pwdTextField.getText();
         int res = validateCredentials(full_name, domain, student_id, pwd);
         boolean isExist = studentDir.doesStudentProfileExist(student_id);
-        if(res==-1)
-            JOptionPane.showMessageDialog(this, "No fields can be left empty","ERROR",JOptionPane.ERROR_MESSAGE);
-        else if(isExist){
-            JOptionPane.showMessageDialog(this, "Student ID already present","ERROR",JOptionPane.ERROR_MESSAGE);
-        }
-        else{
+        if (res == -1)
+            JOptionPane.showMessageDialog(this, "No fields can be left empty", "ERROR", JOptionPane.ERROR_MESSAGE);
+        else if (isExist) {
+            JOptionPane.showMessageDialog(this, "Student ID already present", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
             Student student = new Student();
             student.setFull_name(full_name);
             student.setDomain(domain);
@@ -179,7 +178,7 @@ public class CreateStudentCredentials extends javax.swing.JPanel {
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         this.userProcessContainer.remove(this);
-        ((CardLayout)userProcessContainer.getLayout()).previous(userProcessContainer);
+        ((CardLayout) userProcessContainer.getLayout()).previous(userProcessContainer);
 
     }//GEN-LAST:event_backBtnActionPerformed
 
@@ -199,10 +198,11 @@ public class CreateStudentCredentials extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private int validateCredentials(String full_name, String domain, String student_id, String pwd) {
-        
-        if(full_name.isBlank() || domain.isBlank() || student_id.isBlank() || pwd.isBlank())
+
+        if (full_name.isBlank() || domain.isBlank() || student_id.isBlank() || pwd.isBlank()) {
             return -1;
-        else
+        } else {
             return 1;
+        }
     }
 }

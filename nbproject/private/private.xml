@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/programming/NetBeansProjects/AED_Team_Project/src/model/AdminPkg/Faculty.java</file>
-            <file>file:/D:/programming/NetBeansProjects/AED_Team_Project/src/model/DateAndTime/MeetTimeSchedule.java</file>
-            <file>file:/D:/programming/NetBeansProjects/AED_Team_Project/src/ui/login/Faculty/ManageScheduleJPanel.java</file>
-            <file>file:/D:/programming/NetBeansProjects/AED_Team_Project/src/ui/login/Faculty/AddAvailJPanel.java</file>
-            <file>file:/D:/programming/NetBeansProjects/AED_Team_Project/src/ui/login/Faculty/FacultyLandingPage.java</file>
+            <file>file:/Users/thivya/Thivya/AED/AED_TEAM_PROJECT/src/model/AdminPkg/FacultyDirectory.java</file>
+            <file>file:/Users/thivya/Thivya/AED/AED_TEAM_PROJECT/src/ui/login/MainJFrame.java</file>
+            <file>file:/Users/thivya/Thivya/AED/AED_TEAM_PROJECT/src/model/CoursePkg/Course.java</file>
+            <file>file:/Users/thivya/Thivya/AED/AED_TEAM_PROJECT/src/model/AdminPkg/StudentDirectory.java</file>
+            <file>file:/Users/thivya/Thivya/AED/AED_TEAM_PROJECT/src/model/CoursePkg/CourseCatalog.java</file>
         </group>
     </open-files>
 </project-private>

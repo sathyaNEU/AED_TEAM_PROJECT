@@ -13,6 +13,7 @@ import model.DateAndTime.CourseTimeSchedule;
  * @author thivya
  */
 public class Course {
+
     private int courseId;
     private String courseName;
     private int credit;
@@ -22,7 +23,7 @@ public class Course {
     Faculty faculty;
     ArrayList<CourseTimeSchedule> courseTimeScheduleList;
     private String semester;
-    
+
     public String getRegion() {
         return region;
     }
@@ -70,7 +71,6 @@ public class Course {
     public void setSemester(String semester) {
         this.semester = semester;
     }
-    
 
     public int getCourseId() {
         return courseId;
@@ -87,12 +87,12 @@ public class Course {
     public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
-        
-    public ArrayList<CourseTimeSchedule> getCourseTimeScheduleList(){
+
+    public ArrayList<CourseTimeSchedule> getCourseTimeScheduleList() {
         return courseTimeScheduleList;
     }
-    
-    public void addTimeSchedule(String day, String timings){
+
+    public void addTimeSchedule(String day, String timings) {
         CourseTimeSchedule timeSchedule = new CourseTimeSchedule();
         timeSchedule.setDay(day);
         timeSchedule.setTiming(timings);
@@ -100,9 +100,9 @@ public class Course {
         courseTimeScheduleList.add(timeSchedule);
     }
 
-     @Override
-    public String toString(){
-    return String.valueOf(courseId);
+    @Override
+    public String toString() {
+        return String.valueOf(courseId);
     }
-    
+
 }

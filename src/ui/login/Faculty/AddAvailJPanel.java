@@ -20,7 +20,7 @@ public class AddAvailJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     Faculty faculty;
-    
+
     public AddAvailJPanel(JPanel userProcessContainer, Faculty faculty) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -133,16 +133,16 @@ public class AddAvailJPanel extends javax.swing.JPanel {
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
-        ((CardLayout)userProcessContainer.getLayout()).previous(userProcessContainer);
+        ((CardLayout) userProcessContainer.getLayout()).previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void addScheduleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addScheduleBtnActionPerformed
         // TODO add your handling code here:
         String day = dateTextField.getText();
         String timing = timingTextField.getText();
-        if(day.isBlank() || timing.isBlank())
-            JOptionPane.showMessageDialog(this, "All fields mandatory !","WARNING",JOptionPane.WARNING_MESSAGE);
-        else{
+        if (day.isBlank() || timing.isBlank())
+            JOptionPane.showMessageDialog(this, "All fields mandatory !", "WARNING", JOptionPane.WARNING_MESSAGE);
+        else {
             faculty.addTimeSchedule(day, timing);
             JOptionPane.showMessageDialog(this, "Information Saved Successfully");
             dateTextField.setText("");

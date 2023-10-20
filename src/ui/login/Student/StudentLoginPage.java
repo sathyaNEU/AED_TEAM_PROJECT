@@ -26,14 +26,14 @@ public class StudentLoginPage extends javax.swing.JPanel {
     StudentDirectory studentDir;
     FacultyDirectory facultyDir;
     CourseCatalog courseCatalog;
-    
-    public StudentLoginPage(JPanel userProcessContainer, StudentDirectory studentDir,FacultyDirectory facultyDir,CourseCatalog courseCatalog ) {
+
+    public StudentLoginPage(JPanel userProcessContainer, StudentDirectory studentDir, FacultyDirectory facultyDir, CourseCatalog courseCatalog) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.studentDir = studentDir;
         this.facultyDir = facultyDir;
         this.courseCatalog = courseCatalog;
-        
+
     }
 
     /**
@@ -114,26 +114,24 @@ public class StudentLoginPage extends javax.swing.JPanel {
         // TODO add your handling code here:
         String student_id = this.studentIdTextField.getText();
         String pwd = String.valueOf(this.pwdTextField.getPassword());
-        if(student_id.isBlank() || pwd.isBlank()){
-            JOptionPane.showMessageDialog(this, "Admin id or password is empty","ERROR",JOptionPane.ERROR_MESSAGE);
-        }
-        else{
+        if (student_id.isBlank() || pwd.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Admin id or password is empty", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
             Student student = studentDir.getStudentByUserId(student_id);
-            if(student!=null){
-                if(student.getPwd().equals(pwd)){
+            if (student != null) {
+                if (student.getPwd().equals(pwd)) {
                     StudentLandingPage studentProfileJPanel = new StudentLandingPage(userProcessContainer, courseCatalog, student);
-                    userProcessContainer.add("studentProfileJPanel",studentProfileJPanel);
-                    CardLayout cardLayout = (CardLayout)userProcessContainer.getLayout();
+                    userProcessContainer.add("studentProfileJPanel", studentProfileJPanel);
+                    CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
                     cardLayout.next(userProcessContainer);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Student id or password is incorrect", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
-                else
-                    JOptionPane.showMessageDialog(this, "Student id or password is incorrect","ERROR",JOptionPane.ERROR_MESSAGE);   
-                
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Student Account does not exist", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-            else{
-               JOptionPane.showMessageDialog(this, "Student Account does not exist","ERROR",JOptionPane.ERROR_MESSAGE);   
-            }
-            
+
         }
     }//GEN-LAST:event_loginBtnActionPerformed
 
@@ -143,8 +141,8 @@ public class StudentLoginPage extends javax.swing.JPanel {
         //this.userProcessContainer.add("adminMainOps",adminMainOps);
         Student student = studentDir.getStudentByUserId("stest");
         StudentLandingPage studentProfileJPanel = new StudentLandingPage(userProcessContainer, courseCatalog, student);
-        userProcessContainer.add("studentProfileJPanel",studentProfileJPanel);
-        CardLayout cardLayout = (CardLayout)userProcessContainer.getLayout();
+        userProcessContainer.add("studentProfileJPanel", studentProfileJPanel);
+        CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
         cardLayout.next(userProcessContainer);
     }//GEN-LAST:event_bypassBtnActionPerformed
 

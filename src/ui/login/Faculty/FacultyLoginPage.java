@@ -4,7 +4,6 @@
  */
 package ui.login.Faculty;
 
-
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -22,19 +21,18 @@ public class FacultyLoginPage extends javax.swing.JPanel {
     /**
      * Creates new form FacultyLoginPage
      */
-    
     JPanel userProcessContainer;
     StudentDirectory studentDir;
     FacultyDirectory facultyDir;
     CourseCatalog courseCatalog;
-    
-    public FacultyLoginPage(JPanel userProcessContainer, StudentDirectory studentDir,FacultyDirectory facultyDir,CourseCatalog courseCatalog) {
+
+    public FacultyLoginPage(JPanel userProcessContainer, StudentDirectory studentDir, FacultyDirectory facultyDir, CourseCatalog courseCatalog) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.studentDir = studentDir;
         this.facultyDir = facultyDir;
         this.courseCatalog = courseCatalog;
-        
+
     }
 
     /**
@@ -119,20 +117,19 @@ public class FacultyLoginPage extends javax.swing.JPanel {
         // TODO add your handling code here:
         String faculty_id = facultyIdTextField.getText();
         String pwd = pwdTextField.getText();
-        if(faculty_id.isBlank() || pwd.isBlank())
-            JOptionPane.showMessageDialog(this, "Admin id or password is emopty","ERROR",JOptionPane.ERROR_MESSAGE);
-        else{
+        if (faculty_id.isBlank() || pwd.isBlank())
+            JOptionPane.showMessageDialog(this, "Admin id or password is emopty", "ERROR", JOptionPane.ERROR_MESSAGE);
+        else {
             Faculty faculty = this.facultyDir.getFacultyByFacultyId(faculty_id);
-            if(faculty!=null){
-                if(faculty.getPwd().equals(pwd)){
-                    FacultyLandingPage facultyLandingPage = new FacultyLandingPage(userProcessContainer,studentDir, faculty, courseCatalog);
+            if (faculty != null) {
+                if (faculty.getPwd().equals(pwd)) {
+                    FacultyLandingPage facultyLandingPage = new FacultyLandingPage(userProcessContainer, studentDir, faculty, courseCatalog);
                     this.userProcessContainer.add("facultyLandingPage", facultyLandingPage);
-                    ((CardLayout)userProcessContainer.getLayout()).next(userProcessContainer);
-                }   
-                else
-                    JOptionPane.showMessageDialog(this, "Faculty id or password incorrect","ERROR",JOptionPane.ERROR_MESSAGE);
+                    ((CardLayout) userProcessContainer.getLayout()).next(userProcessContainer);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Faculty id or password incorrect", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
             }
-            
 
         }
     }//GEN-LAST:event_loginBtnActionPerformed
@@ -140,10 +137,10 @@ public class FacultyLoginPage extends javax.swing.JPanel {
     private void bypassBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bypassBtnActionPerformed
         // TODO add your handling code here:
         Faculty faculty = this.facultyDir.getFacultyByFacultyId("ftest");
-        FacultyLandingPage facultyLandingPage = new FacultyLandingPage(userProcessContainer,studentDir, faculty, courseCatalog);
+        FacultyLandingPage facultyLandingPage = new FacultyLandingPage(userProcessContainer, studentDir, faculty, courseCatalog);
         this.userProcessContainer.add("facultyLandingPage", facultyLandingPage);
-        ((CardLayout)userProcessContainer.getLayout()).next(userProcessContainer);
-        
+        ((CardLayout) userProcessContainer.getLayout()).next(userProcessContainer);
+
     }//GEN-LAST:event_bypassBtnActionPerformed
 
 

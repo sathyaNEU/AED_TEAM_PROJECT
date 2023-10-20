@@ -5,7 +5,9 @@
 package ui.login.Student;
 
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.AdminPkg.Student;
 import model.CoursePkg.Course;
 import model.CoursePkg.CourseCatalog;
 
@@ -19,20 +21,23 @@ public class CourseRegisterJPanel extends javax.swing.JPanel {
      * Creates new form CourseRegisterJPanel
      */
     private Course course;
-     private JPanel userProcessContainer;
-    public CourseRegisterJPanel(JPanel userProcessContainer,Course course) {
+    private JPanel userProcessContainer;
+    private Student student;
+
+    public CourseRegisterJPanel(JPanel userProcessContainer, Course course, Student student) {
         initComponents();
-         this.userProcessContainer = userProcessContainer;
-         this.course = course;
-         courseIdTextArea.setText(course.getCourseName());
-         courseNameTextArea.setText(Integer.toString(course.getCourseId()));
-         facultyNameTextArea.setText(course.getFaculty().getFull_name());
-         regionTextArea.setText(course.getRegion());
-         langTextArea.setText(course.getLang());
-         creditsTextArea.setText(String.valueOf(course.getCredit()));
-         priceTextArea.setText(String.valueOf(course.getPrice()));
-         ratingTextArea.setText(String.valueOf(course.getFaculty().getRating()));
-         
+        this.userProcessContainer = userProcessContainer;
+        this.course = course;
+        this.student = student;
+        courseIdTextArea.setText(Integer.toString(course.getCourseId()));
+        courseNameTextArea.setText(course.getCourseName());
+        facultyNameTextArea.setText(course.getFaculty().getFull_name());
+        regionTextArea.setText(course.getRegion());
+        langTextArea.setText(course.getLang());
+        creditsTextArea.setText(String.valueOf(course.getCredit()));
+        priceTextArea.setText(String.valueOf(course.getPrice()));
+        ratingTextArea.setText(String.valueOf(course.getFaculty().getRating()));
+
     }
 
     /**
@@ -75,6 +80,11 @@ public class CourseRegisterJPanel extends javax.swing.JPanel {
         courseNameTextArea.setEditable(false);
 
         jButton1.setText("Register");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -237,8 +247,8 @@ public class CourseRegisterJPanel extends javax.swing.JPanel {
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
-        ((CardLayout)userProcessContainer.getLayout()).previous(userProcessContainer);
-        
+        ((CardLayout) userProcessContainer.getLayout()).previous(userProcessContainer);
+
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void facultyNameTextAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facultyNameTextAreaActionPerformed
@@ -264,6 +274,12 @@ public class CourseRegisterJPanel extends javax.swing.JPanel {
     private void priceTextAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceTextAreaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_priceTextAreaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        student.addCourseToStudent(course);
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

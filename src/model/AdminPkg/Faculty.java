@@ -8,35 +8,32 @@ import java.util.ArrayList;
 import model.DateAndTime.CourseTimeSchedule;
 import model.DateAndTime.MeetTimeSchedule;
 
-
-
 /**
  *
  * @author Sathya
  */
 public class Faculty {
+
     String full_name;
     String speciality;
     String faculty_id;
     String pwd;
     int rating;
-    ArrayList<MeetTimeSchedule> meetTimeScheduleList;    
+    ArrayList<MeetTimeSchedule> meetTimeScheduleList;
     Boolean isAccActive;
     Boolean isAuthToUpdateInfo;
 
     public Faculty() {
-       rating = 0;
-       meetTimeScheduleList = new ArrayList<>();
+        rating = 0;
+        meetTimeScheduleList = new ArrayList<>();
     }
-    
-    
 
     public int getRating() {
         return rating;
     }
 
     public void setRating(int rating) {
-        this.rating+=rating;
+        this.rating += rating;
     }
 
     public Boolean getIsAccActive() {
@@ -85,17 +82,17 @@ public class Faculty {
 
     public void setPwd(String pwd) {
         this.pwd = pwd;
-    }    
-    
-    public String toString(){
+    }
+
+    public String toString() {
         return faculty_id;
     }
 
     public ArrayList<MeetTimeSchedule> getMeetTimeScheduleList() {
         return meetTimeScheduleList;
     }
-      
-    public void addTimeSchedule(String day, String time){
+
+    public void addTimeSchedule(String day, String time) {
         MeetTimeSchedule meetTimeSchedule = new MeetTimeSchedule();
         MeetTimeSchedule.incCounter();
         meetTimeSchedule.setBooking_id(MeetTimeSchedule.getCounter());

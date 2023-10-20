@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import model.AdminPkg.Student;
 import model.CoursePkg.Course;
 import model.CoursePkg.CourseCatalog;
 
@@ -24,11 +25,13 @@ public class ViewCoursesJPanel extends javax.swing.JPanel {
      */
     private CourseCatalog courseDirectory;
     private JPanel userProcessContainer;
+    private Student student;
 
-    public ViewCoursesJPanel(JPanel userProcessContainer, CourseCatalog courseDirectory) {
+    public ViewCoursesJPanel(JPanel userProcessContainer, CourseCatalog courseDirectory, Student student) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.courseDirectory = courseDirectory;
+        this.student = student;
         populateTable();
     }
 
@@ -72,7 +75,7 @@ public class ViewCoursesJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Course Name", "Course ID", "Faculty", "Region", "Language"
+                "Course ID", "Course Name", "Faculty", "Region", "Language"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -206,7 +209,7 @@ public class ViewCoursesJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row from table first to view details", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
             Course course = (Course) tblCourseDetails.getValueAt(selectedRow, 0);
-            CourseRegisterJPanel courseRegisterJPanel = new CourseRegisterJPanel(userProcessContainer, course);
+            CourseRegisterJPanel courseRegisterJPanel = new CourseRegisterJPanel(userProcessContainer, course, student);
             userProcessContainer.add("CourseRegisterJPanel", courseRegisterJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
@@ -217,7 +220,7 @@ public class ViewCoursesJPanel extends javax.swing.JPanel {
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
-        ((CardLayout)userProcessContainer.getLayout()).previous(userProcessContainer);
+        ((CardLayout) userProcessContainer.getLayout()).previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
 
 

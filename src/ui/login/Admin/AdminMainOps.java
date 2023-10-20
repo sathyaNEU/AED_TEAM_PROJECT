@@ -21,7 +21,7 @@ public class AdminMainOps extends javax.swing.JPanel {
     JPanel userProcessContainer;
     StudentDirectory studentDir;
     FacultyDirectory facultyDir;
-    
+
     public AdminMainOps(JPanel userProcessContainer, StudentDirectory studentDir, FacultyDirectory facultyDir) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -110,22 +110,22 @@ public class AdminMainOps extends javax.swing.JPanel {
 
     private void manageFacultyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageFacultyActionPerformed
         // TODO add your handling code here:
-        ManageFaculty manageFaculty = new ManageFaculty(userProcessContainer,facultyDir);
+        ManageFaculty manageFaculty = new ManageFaculty(userProcessContainer, facultyDir);
         userProcessContainer.add("ManageFaculty", manageFaculty);
-        ((CardLayout)userProcessContainer.getLayout()).next(userProcessContainer);
+        ((CardLayout) userProcessContainer.getLayout()).next(userProcessContainer);
     }//GEN-LAST:event_manageFacultyActionPerformed
 
     private void manageStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageStudentActionPerformed
         // TODO add your handling code here:
         ManageStudent manageStudent = new ManageStudent(userProcessContainer, studentDir);
         userProcessContainer.add(manageStudent);
-        ((CardLayout)userProcessContainer.getLayout()).next(userProcessContainer);
+        ((CardLayout) userProcessContainer.getLayout()).next(userProcessContainer);
     }//GEN-LAST:event_manageStudentActionPerformed
 
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
         // TODO add your handling code here:
         this.userProcessContainer.removeAll();
-        
+
     }//GEN-LAST:event_homeBtnActionPerformed
 
 

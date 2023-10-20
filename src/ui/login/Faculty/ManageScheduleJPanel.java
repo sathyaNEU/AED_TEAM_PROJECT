@@ -26,8 +26,8 @@ public class ManageScheduleJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     StudentDirectory studentDir;
     Faculty faculty;
-    
-    public ManageScheduleJPanel(JPanel userProcessContainer, StudentDirectory studentDir,Faculty faculty) {
+
+    public ManageScheduleJPanel(JPanel userProcessContainer, StudentDirectory studentDir, Faculty faculty) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.faculty = faculty;
@@ -151,32 +151,31 @@ public class ManageScheduleJPanel extends javax.swing.JPanel {
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
-        ((CardLayout)userProcessContainer.getLayout()).previous(userProcessContainer);
+        ((CardLayout) userProcessContainer.getLayout()).previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void rescheduleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rescheduleBtnActionPerformed
         // TODO add your handling code here:
-       int index = scheduleTable.getSelectedRow();
-       if(index==-1){
-           JOptionPane.showMessageDialog(this, "Row not selected", "ERROR", JOptionPane.ERROR_MESSAGE);
-       }
-       else{
-           DefaultTableModel dtm = (DefaultTableModel)scheduleTable.getModel();
-           RescheduleJPanel reschedulePanel = new RescheduleJPanel(userProcessContainer, faculty, (MeetTimeSchedule)dtm.getValueAt(index, 0));
-           userProcessContainer.add(reschedulePanel);
-           ((CardLayout)userProcessContainer.getLayout()).next(userProcessContainer);
+        int index = scheduleTable.getSelectedRow();
+        if (index == -1) {
+            JOptionPane.showMessageDialog(this, "Row not selected", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            DefaultTableModel dtm = (DefaultTableModel) scheduleTable.getModel();
+            RescheduleJPanel reschedulePanel = new RescheduleJPanel(userProcessContainer, faculty, (MeetTimeSchedule) dtm.getValueAt(index, 0));
+            userProcessContainer.add(reschedulePanel);
+            ((CardLayout) userProcessContainer.getLayout()).next(userProcessContainer);
 
-       }
-       
+        }
+
 
     }//GEN-LAST:event_rescheduleBtnActionPerformed
 
     private void addAvailBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAvailBtnActionPerformed
         // TODO add your handling code here:
         AddAvailJPanel addAvailJPanel = new AddAvailJPanel(this.userProcessContainer, this.faculty);
-        userProcessContainer.add("addAvailJPanel",addAvailJPanel);
-        ((CardLayout)userProcessContainer.getLayout()).next(userProcessContainer);
-        
+        userProcessContainer.add("addAvailJPanel", addAvailJPanel);
+        ((CardLayout) userProcessContainer.getLayout()).next(userProcessContainer);
+
     }//GEN-LAST:event_addAvailBtnActionPerformed
 
     private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
@@ -197,21 +196,23 @@ public class ManageScheduleJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-        DefaultTableModel dtm = (DefaultTableModel)scheduleTable.getModel();
+        DefaultTableModel dtm = (DefaultTableModel) scheduleTable.getModel();
         dtm.setRowCount(0);
-        for(MeetTimeSchedule meetTimeSchedule : this.faculty.getMeetTimeScheduleList()){
+        for (MeetTimeSchedule meetTimeSchedule : this.faculty.getMeetTimeScheduleList()) {
             Object[] obj = new Object[5];
             obj[0] = meetTimeSchedule;
             obj[1] = meetTimeSchedule.getDay();
             obj[2] = meetTimeSchedule.getTiming();
-            if(meetTimeSchedule.isActive())
-                obj[3] = "Active" ;
-            else
-                obj[3] = "InActive" ;
-            if(meetTimeSchedule.getStudent()==null)
+            if (meetTimeSchedule.isActive()) {
+                obj[3] = "Active";
+            } else {
+                obj[3] = "InActive";
+            }
+            if (meetTimeSchedule.getStudent() == null) {
                 obj[4] = "Not Assigned";
-            else
+            } else {
                 obj[4] = meetTimeSchedule.getStudent().getFull_name();
+            }
             dtm.addRow(obj);
         }
     }

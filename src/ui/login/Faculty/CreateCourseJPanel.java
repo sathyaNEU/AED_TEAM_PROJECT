@@ -22,13 +22,12 @@ public class CreateCourseJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CreateCourseJPanel
      */
-    
     JPanel userProcessContainer;
     StudentDirectory studentDir;
     Faculty faculty;
     CourseCatalog courseCatalog;
-    
-    public CreateCourseJPanel(JPanel userProcessContainer, StudentDirectory studentDir,Faculty faculty,CourseCatalog courseCatalog) {
+
+    public CreateCourseJPanel(JPanel userProcessContainer, StudentDirectory studentDir, Faculty faculty, CourseCatalog courseCatalog) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.courseCatalog = courseCatalog;
@@ -172,7 +171,7 @@ public class CreateCourseJPanel extends javax.swing.JPanel {
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
-        ((CardLayout)userProcessContainer.getLayout()).previous(userProcessContainer);
+        ((CardLayout) userProcessContainer.getLayout()).previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
@@ -186,20 +185,18 @@ public class CreateCourseJPanel extends javax.swing.JPanel {
         String credits = creditsTextField.getText();
         String region = regionTextField.getText();
         String lang = langTextField.getText();
-        try{
+        try {
             Price = Float.parseFloat(price);
             Credits = Integer.parseInt(credits);
             CourseID = Integer.parseInt(course_id);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Alphabets, white space or specials characters encountered \nin Floting or Numberical Data type fields", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        catch(Exception e){
-          JOptionPane.showMessageDialog(this, "Alphabets, white space or specials characters encountered \nin Floting or Numberical Data type fields","ERROR",JOptionPane.ERROR_MESSAGE);
-          return;
-        }
-        
-        if(course_name.isBlank() || course_id.isBlank() || price.isBlank() || credits.isBlank() || region.isBlank() || lang.isBlank()){
-             JOptionPane.showMessageDialog(this, "All fields mandatory !","WARNING",JOptionPane.WARNING_MESSAGE);
-        }
-        else{
+
+        if (course_name.isBlank() || course_id.isBlank() || price.isBlank() || credits.isBlank() || region.isBlank() || lang.isBlank()) {
+            JOptionPane.showMessageDialog(this, "All fields mandatory !", "WARNING", JOptionPane.WARNING_MESSAGE);
+        } else {
             Course course = new Course();
             course.setCourseId(CourseID);
             course.setCourseName(course_name);
@@ -213,7 +210,7 @@ public class CreateCourseJPanel extends javax.swing.JPanel {
             courseCatalog.addCourseToCourseList(course);
             JOptionPane.showMessageDialog(this, "Course Created Successfully");
         }
-        
+
     }//GEN-LAST:event_saveBtnActionPerformed
 
 

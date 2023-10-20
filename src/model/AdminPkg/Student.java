@@ -4,18 +4,64 @@
  */
 package model.AdminPkg;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.swing.JOptionPane;
+import model.CoursePkg.Course;
 
 /**
  *
  * @author Sathya
  */
 public class Student {
+
     String full_name;
     String user_id;
     String pwd;
     String domain;
     Boolean isAccActive;
     Boolean isAuthToUpdateInfo;
+    ArrayList<Course> courseList;
+    Map<String, List<Course>> map;
+
+    public Student() {
+        courseList = new ArrayList<>();
+      map = new HashMap();
+    }
+
+    public Map<String, List<Course>> getMap() {
+        return map;
+    }
+
+    public void setMap(Map<String, List<Course>> map) {
+        this.map = map;
+    }
+
+    public ArrayList<Course> getCourseList() {
+        return courseList;
+    }
+
+    public void setCourseList(ArrayList<Course> courseList) {
+        this.courseList = courseList;
+    }
+
+    public void addCourseToStudent(Course newCourse) {
+        for (Course course : courseList) {
+            if (newCourse.getCourseId() == course.getCourseId()) {
+                JOptionPane.showMessageDialog(null, "This Course has already been registered", "Warning", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+        }
+        courseList.add(newCourse);
+        map.put(newCourse.getSemester(), courseList);
+         //Map<String, List<Course>> map = student.getMap();
+        //List<Course> courseList = map.get("fall2021");
+        JOptionPane.showMessageDialog(null, "Course has been registered successfully!");
+
+    }
 
     public Boolean getIsAccActive() {
         return isAccActive;
@@ -32,7 +78,7 @@ public class Student {
     public void setIsAuthToUpdateInfo(Boolean isAuthToUpdateInfo) {
         this.isAuthToUpdateInfo = isAuthToUpdateInfo;
     }
-    
+
     public String getFull_name() {
         return full_name;
     }
@@ -64,9 +110,9 @@ public class Student {
     public void setDomain(String domain) {
         this.domain = domain;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return user_id;
     }
 }

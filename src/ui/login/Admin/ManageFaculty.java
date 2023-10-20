@@ -20,18 +20,19 @@ public class ManageFaculty extends javax.swing.JPanel {
     JPanel userProcessContainer;
     FacultyDirectory facultyDir;
     Faculty faculty;
+
     /**
      * Creates new form ManageFaculty
      */
     public ManageFaculty(JPanel userProcessContainer, FacultyDirectory facultyDir) {
         initComponents();
-         this.userProcessContainer = userProcessContainer;
-         this.facultyDir = facultyDir;
-         this.hideInOutPanel.setVisible(false);
-         this.hideInOutPanel.setVisible(false);
-         this.isAccDisabled.setEnabled(false);
-         this.isAuthToUpdateInfo.setEnabled(false);
-         this.saveBtn.setEnabled(false);
+        this.userProcessContainer = userProcessContainer;
+        this.facultyDir = facultyDir;
+        this.hideInOutPanel.setVisible(false);
+        this.hideInOutPanel.setVisible(false);
+        this.isAccDisabled.setEnabled(false);
+        this.isAuthToUpdateInfo.setEnabled(false);
+        this.saveBtn.setEnabled(false);
 
     }
 
@@ -184,15 +185,15 @@ public class ManageFaculty extends javax.swing.JPanel {
     private void createFacultyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createFacultyBtnActionPerformed
         // TODO add your handling code here:
         CreateFacultyCredentials createFacultyCredentials = new CreateFacultyCredentials(userProcessContainer, facultyDir);
-        userProcessContainer.add("createFacultyCredentials",createFacultyCredentials);
-        ((CardLayout)userProcessContainer.getLayout()).next(userProcessContainer);
+        userProcessContainer.add("createFacultyCredentials", createFacultyCredentials);
+        ((CardLayout) userProcessContainer.getLayout()).next(userProcessContainer);
     }//GEN-LAST:event_createFacultyBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         this.userProcessContainer.remove(this);
-        ((CardLayout)userProcessContainer.getLayout()).previous(userProcessContainer);
-       
+        ((CardLayout) userProcessContainer.getLayout()).previous(userProcessContainer);
+
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void pwdTextAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdTextAreaActionPerformed
@@ -216,10 +217,9 @@ public class ManageFaculty extends javax.swing.JPanel {
         String pwd = pwdTextArea.getText();
         Boolean isAccountDisabled = isAccDisabled.isSelected();
         Boolean isAuthToUpdateInfo = this.isAuthToUpdateInfo.isSelected();
-        if(faculty_id.isBlank() || pwd.isBlank()){
-            JOptionPane.showMessageDialog(this, "Credentials cannot be empty","ERROR",JOptionPane.ERROR_MESSAGE);
-        }
-        else{
+        if (faculty_id.isBlank() || pwd.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Credentials cannot be empty", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
             this.faculty.setFaculty_id(faculty_id);
             this.faculty.setPwd(pwd);
             this.faculty.setIsAccActive(!isAccountDisabled);
@@ -240,20 +240,18 @@ public class ManageFaculty extends javax.swing.JPanel {
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // TODO add your handling code here:
         String id = facultyIdTextField.getText();
-        if(id==null){
-            JOptionPane.showMessageDialog(this, "Id cannot be empty","ERROR",JOptionPane.ERROR_MESSAGE);
-        }
-        else{
+        if (id == null) {
+            JOptionPane.showMessageDialog(this, "Id cannot be empty", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
             Faculty faculty = facultyDir.getFacultyByFacultyId(id);
-            if(faculty == null){
-                JOptionPane.showMessageDialog(this, "Faculty ID NOT FOUND","ERROR",JOptionPane.ERROR_MESSAGE);
-            }
-            else {
+            if (faculty == null) {
+                JOptionPane.showMessageDialog(this, "Faculty ID NOT FOUND", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else {
                 this.faculty = faculty;
                 this.facultyIdTextArea.setText(id);
                 this.pwdTextArea.setText(faculty.getPwd());
-                hideInOutPanel.setVisible(true);   
-            }      
+                hideInOutPanel.setVisible(true);
+            }
         }
     }//GEN-LAST:event_searchBtnActionPerformed
 

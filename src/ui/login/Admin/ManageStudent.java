@@ -25,12 +25,12 @@ public class ManageStudent extends javax.swing.JPanel {
      */
     public ManageStudent(JPanel userProcessContainer, StudentDirectory studentDir) {
         initComponents();
-         this.userProcessContainer = userProcessContainer;
-         this.studentDir = studentDir;
-         this.hideInOutPanel.setVisible(false);
-         this.isAccDisabled.setEnabled(false);
-         this.isAuthToUpdateInfo.setEnabled(false);
-         this.saveBtn.setEnabled(false);
+        this.userProcessContainer = userProcessContainer;
+        this.studentDir = studentDir;
+        this.hideInOutPanel.setVisible(false);
+        this.isAccDisabled.setEnabled(false);
+        this.isAuthToUpdateInfo.setEnabled(false);
+        this.saveBtn.setEnabled(false);
     }
 
     /**
@@ -151,37 +151,35 @@ public class ManageStudent extends javax.swing.JPanel {
     private void createStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createStudentBtnActionPerformed
         // TODO add your handling code here:
         CreateStudentCredentials createUserCredential = new CreateStudentCredentials(userProcessContainer, studentDir);
-        this.userProcessContainer.add("createUserCredential",createUserCredential);
-        ((CardLayout)userProcessContainer.getLayout()).next(userProcessContainer);
-        
+        this.userProcessContainer.add("createUserCredential", createUserCredential);
+        ((CardLayout) userProcessContainer.getLayout()).next(userProcessContainer);
+
     }//GEN-LAST:event_createStudentBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         this.userProcessContainer.remove(this);
-        ((CardLayout)userProcessContainer.getLayout()).previous(userProcessContainer);
+        ((CardLayout) userProcessContainer.getLayout()).previous(userProcessContainer);
 
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // TODO add your handling code here:
         String id = idTextField.getText();
-        if(id==null){
-            JOptionPane.showMessageDialog(this, "Id cannot be empty","ERROR",JOptionPane.ERROR_MESSAGE);
-        }
-        else{
+        if (id == null) {
+            JOptionPane.showMessageDialog(this, "Id cannot be empty", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
             Student student = studentDir.getStudentByUserId(id);
-            if(student == null){
-                JOptionPane.showMessageDialog(this, "Student ID NOT FOUND","ERROR",JOptionPane.ERROR_MESSAGE);
-            }
-            else {
+            if (student == null) {
+                JOptionPane.showMessageDialog(this, "Student ID NOT FOUND", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else {
                 this.student = student;
                 this.studentIdTextArea.setText(id);
                 this.pwdTextArea.setText(student.getPwd());
-                hideInOutPanel.setVisible(true);   
-            }      
+                hideInOutPanel.setVisible(true);
+            }
         }
-           
+
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
@@ -192,7 +190,7 @@ public class ManageStudent extends javax.swing.JPanel {
         pwdTextArea.setEditable(true);
         isAccDisabled.setEnabled(true);
         isAuthToUpdateInfo.setEnabled(true);
-        
+
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
@@ -201,11 +199,10 @@ public class ManageStudent extends javax.swing.JPanel {
         String pwd = pwdTextArea.getText();
         Boolean isAccountDisabled = isAccDisabled.isSelected();
         Boolean isAuthToUpdateInfo = this.isAuthToUpdateInfo.isSelected();
-        if(student_id.isBlank() || pwd.isBlank()){
-            JOptionPane.showMessageDialog(this, "Credentials cannot be empty","ERROR",JOptionPane.ERROR_MESSAGE);
-        }
-        else{
-            System.out.println(student_id+ pwd);
+        if (student_id.isBlank() || pwd.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Credentials cannot be empty", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            System.out.println(student_id + pwd);
             this.student.setUser_id(student_id);
             this.student.setPwd(pwd);
             this.student.setIsAccActive(!isAccountDisabled);
@@ -219,8 +216,7 @@ public class ManageStudent extends javax.swing.JPanel {
             idTextField.setText("");
             studentIdTextArea.setText("");
             pwdTextArea.setText("");
-            
-          
+
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 

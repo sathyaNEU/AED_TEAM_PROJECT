@@ -23,7 +23,7 @@ public class RescheduleJPanel extends javax.swing.JPanel {
     /**
      * Creates new form rescheduleJPanel
      */
-    public RescheduleJPanel(JPanel userProcessContainer,Faculty faculty, MeetTimeSchedule meetTimeSchedule) {
+    public RescheduleJPanel(JPanel userProcessContainer, Faculty faculty, MeetTimeSchedule meetTimeSchedule) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.meetTimeSchedule = meetTimeSchedule;
@@ -32,16 +32,17 @@ public class RescheduleJPanel extends javax.swing.JPanel {
         bookingIdTextField.setText(String.valueOf(this.meetTimeSchedule.getBooking_id()));
         dateTextField.setText(this.meetTimeSchedule.getDay());
         timingTextField.setText(this.meetTimeSchedule.getTiming());
-        if(this.meetTimeSchedule.isActive())
+        if (this.meetTimeSchedule.isActive()) {
             activeRadioBtn.setSelected(true);
-        else
+        } else {
             activeRadioBtn.setSelected(false);
-        if(this.meetTimeSchedule.getStudent()==null)
+        }
+        if (this.meetTimeSchedule.getStudent() == null) {
             studentTextField.setText("Not Assigned");
-        else
+        } else {
             studentTextField.setText(this.meetTimeSchedule.getStudent().getFull_name());
-        
-        
+        }
+
     }
 
     /**
@@ -204,14 +205,14 @@ public class RescheduleJPanel extends javax.swing.JPanel {
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
-        ((CardLayout)userProcessContainer.getLayout()).previous(userProcessContainer);
-        
+        ((CardLayout) userProcessContainer.getLayout()).previous(userProcessContainer);
+
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
         // TODO add your handling code here:
         int res = JOptionPane.showConfirmDialog(this, "Do you want to delete", "DELETE", JOptionPane.YES_NO_OPTION);
-        if(res==JOptionPane.YES_OPTION){
+        if (res == JOptionPane.YES_OPTION) {
             this.faculty.getMeetTimeScheduleList().remove(this.meetTimeSchedule);
             JOptionPane.showMessageDialog(this, "Successfully Deleted the appointment");
             bookingIdTextField.setText("");
@@ -220,7 +221,7 @@ public class RescheduleJPanel extends javax.swing.JPanel {
             activeRadioBtn.setSelected(false);
             studentTextField.setText("");
         }
-               
+
     }//GEN-LAST:event_removeBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
@@ -228,16 +229,16 @@ public class RescheduleJPanel extends javax.swing.JPanel {
         String day = dateTextField.getText();
         String timing = timingTextField.getText();
         boolean active = activeRadioBtn.isSelected();
-        if(day.isBlank() || timing.isBlank())
-            JOptionPane.showMessageDialog(this, "All fields mandatory !","WARNING",JOptionPane.WARNING_MESSAGE);
-        else{
+        if (day.isBlank() || timing.isBlank()) {
+            JOptionPane.showMessageDialog(this, "All fields mandatory !", "WARNING", JOptionPane.WARNING_MESSAGE);
+        } else {
             this.meetTimeSchedule.setDay(day);
             this.meetTimeSchedule.setTiming(timing);
             this.meetTimeSchedule.setActive(active);
             JOptionPane.showMessageDialog(this, "Infomation Saved Successfully");
         }
-        
-        
+
+
     }//GEN-LAST:event_saveBtnActionPerformed
 
 

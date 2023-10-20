@@ -22,13 +22,13 @@ public class AdminLoginPage extends javax.swing.JPanel {
     JPanel userProcessContainer;
     StudentDirectory studentDir;
     FacultyDirectory facultyDir;
-    
-    public AdminLoginPage(JPanel userProcessContainer, StudentDirectory studentDir,FacultyDirectory facultyDir) {
+
+    public AdminLoginPage(JPanel userProcessContainer, StudentDirectory studentDir, FacultyDirectory facultyDir) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.studentDir = studentDir;
         this.facultyDir = facultyDir;
-        
+
     }
 
     /**
@@ -109,18 +109,16 @@ public class AdminLoginPage extends javax.swing.JPanel {
         // TODO add your handling code here:
         String admin_id = this.adminIdTextField.getText();
         String pwd = String.valueOf(this.pwdTextField.getPassword());
-        if(admin_id==null || pwd==null){
-            JOptionPane.showMessageDialog(this, "Admin id or password is emopty","ERROR",JOptionPane.ERROR_MESSAGE);
-        }
-        else{
-            if(admin_id.equals("admin") && pwd.equals("admin")){
+        if (admin_id == null || pwd == null) {
+            JOptionPane.showMessageDialog(this, "Admin id or password is emopty", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (admin_id.equals("admin") && pwd.equals("admin")) {
                 AdminMainOps adminMainOps = new AdminMainOps(userProcessContainer, studentDir, facultyDir);
-                this.userProcessContainer.add("adminMainOps",adminMainOps);
-                CardLayout cardLayout = (CardLayout)userProcessContainer.getLayout();
+                this.userProcessContainer.add("adminMainOps", adminMainOps);
+                CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
                 cardLayout.next(userProcessContainer);
-            }
-            else{
-             JOptionPane.showMessageDialog(this, "Admin id or password is incorrect","ERROR",JOptionPane.ERROR_MESSAGE);   
+            } else {
+                JOptionPane.showMessageDialog(this, "Admin id or password is incorrect", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_loginBtnActionPerformed
@@ -128,8 +126,8 @@ public class AdminLoginPage extends javax.swing.JPanel {
     private void bypassBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bypassBtnActionPerformed
         // TODO add your handling code here:
         AdminMainOps adminMainOps = new AdminMainOps(userProcessContainer, studentDir, facultyDir);
-        this.userProcessContainer.add("adminMainOps",adminMainOps);
-        CardLayout cardLayout = (CardLayout)userProcessContainer.getLayout();
+        this.userProcessContainer.add("adminMainOps", adminMainOps);
+        CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
         cardLayout.next(userProcessContainer);
     }//GEN-LAST:event_bypassBtnActionPerformed
 

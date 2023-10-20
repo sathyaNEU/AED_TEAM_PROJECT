@@ -21,11 +21,11 @@ public class CreateFacultyCredentials extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     FacultyDirectory facultyDir;
-    
-    public CreateFacultyCredentials(JPanel userProcessContainer,FacultyDirectory facultyDir) {
+
+    public CreateFacultyCredentials(JPanel userProcessContainer, FacultyDirectory facultyDir) {
         initComponents();
-         this.userProcessContainer = userProcessContainer;
-         this.facultyDir = facultyDir;
+        this.userProcessContainer = userProcessContainer;
+        this.facultyDir = facultyDir;
     }
 
     /**
@@ -155,12 +155,11 @@ public class CreateFacultyCredentials extends javax.swing.JPanel {
         String pwd = pwdTextField.getText();
         int res = validateCredentials(full_name, speciality, faculty_id, pwd);
         boolean isExist = facultyDir.doesFacultyProfileExist(faculty_id);
-        if(res==-1)
-        JOptionPane.showMessageDialog(this, "No fields can be left empty","ERROR",JOptionPane.ERROR_MESSAGE);
-        else if(isExist){
-            JOptionPane.showMessageDialog(this, "Faculty ID already present","ERROR",JOptionPane.ERROR_MESSAGE);
-        }
-        else{
+        if (res == -1)
+            JOptionPane.showMessageDialog(this, "No fields can be left empty", "ERROR", JOptionPane.ERROR_MESSAGE);
+        else if (isExist) {
+            JOptionPane.showMessageDialog(this, "Faculty ID already present", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
             Faculty faculty = new Faculty();
             faculty.setFull_name(full_name);
             faculty.setSpeciality(speciality);
@@ -177,16 +176,17 @@ public class CreateFacultyCredentials extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_createUserBtnActionPerformed
     private int validateCredentials(String full_name, String speciality, String user_name, String pwd) {
-        
-        if(full_name.isBlank() || speciality.isBlank() || user_name.isBlank() || pwd.isBlank())
+
+        if (full_name.isBlank() || speciality.isBlank() || user_name.isBlank() || pwd.isBlank()) {
             return -1;
-        else
+        } else {
             return 1;
+        }
     }
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         this.userProcessContainer.remove(this);
-        ((CardLayout)userProcessContainer.getLayout()).previous(userProcessContainer);
+        ((CardLayout) userProcessContainer.getLayout()).previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
 
 

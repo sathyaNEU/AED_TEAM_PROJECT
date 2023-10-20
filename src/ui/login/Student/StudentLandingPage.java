@@ -20,16 +20,17 @@ public class StudentLandingPage extends javax.swing.JPanel {
     /**
      * Creates new form StudentProfileJPanel
      */
-     private CourseCatalog courseCatalog;
-     private JPanel userProcessContainer;
-     Student student;
-    public StudentLandingPage(JPanel userProcessContainer,CourseCatalog courseCatalog, Student student) {
+    private CourseCatalog courseCatalog;
+    private JPanel userProcessContainer;
+    Student student;
+
+    public StudentLandingPage(JPanel userProcessContainer, CourseCatalog courseCatalog, Student student) {
         initComponents();
-         this.userProcessContainer = userProcessContainer;
-         this.courseCatalog = courseCatalog;
-         this.student = student;
-         welcomeLbl.setText(this.student.getFull_name());
-         populateTable();
+        this.userProcessContainer = userProcessContainer;
+        this.courseCatalog = courseCatalog;
+        this.student = student;
+        welcomeLbl.setText(this.student.getFull_name());
+        populateTable();
     }
 
     /**
@@ -48,10 +49,16 @@ public class StudentLandingPage extends javax.swing.JPanel {
         backBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCourseDetails = new javax.swing.JTable();
+        btnRefresh = new javax.swing.JButton();
 
         jLabel1.setText("Welcome");
 
         btnViewProfile.setText("View Profile");
+        btnViewProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewProfileActionPerformed(evt);
+            }
+        });
 
         btnBrowse.setText("Enroll or Browse Courses");
         btnBrowse.addActionListener(new java.awt.event.ActionListener() {
@@ -88,29 +95,40 @@ public class StudentLandingPage extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblCourseDetails);
 
+        btnRefresh.setText("Refresh");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(211, 211, 211)
-                .addComponent(btnBrowse)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnViewProfile)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 423, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(welcomeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(215, 215, 215)
+                        .addComponent(btnBrowse)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(backBtn)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(backBtn)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(btnRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnViewProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 423, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(welcomeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(43, 43, 43)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -122,11 +140,13 @@ public class StudentLandingPage extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(btnViewProfile)
                     .addComponent(welcomeLbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(btnRefresh)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(27, 27, 27)
                 .addComponent(btnBrowse)
-                .addGap(127, 127, 127)
+                .addGap(99, 99, 99)
                 .addComponent(backBtn)
                 .addGap(66, 66, 66))
         );
@@ -134,7 +154,7 @@ public class StudentLandingPage extends javax.swing.JPanel {
 
     private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
         // TODO add your handling code here:
-        ViewCoursesJPanel viewCoursesJPanel = new ViewCoursesJPanel(userProcessContainer, courseCatalog);
+        ViewCoursesJPanel viewCoursesJPanel = new ViewCoursesJPanel(userProcessContainer, courseCatalog, student);
         userProcessContainer.add("ViewCoursesJPanel", viewCoursesJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -143,13 +163,27 @@ public class StudentLandingPage extends javax.swing.JPanel {
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
-        ((CardLayout)userProcessContainer.getLayout()).previous(userProcessContainer);
+        ((CardLayout) userProcessContainer.getLayout()).previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void btnViewProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewProfileActionPerformed
+        // TODO add your handling code here:
+        ViewStudentProfileJPanel viewStudentProfileJPanel = new ViewStudentProfileJPanel(userProcessContainer, student);
+        userProcessContainer.add("ViewStudentProfileJPanel", viewStudentProfileJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnViewProfileActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        // TODO add your handling code here:
+        populateTable();
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JButton btnBrowse;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnViewProfile;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -158,9 +192,17 @@ public class StudentLandingPage extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-         DefaultTableModel dtm = (DefaultTableModel)tblCourseDetails.getModel();
-         dtm.setRowCount(0);
-         //logic after enrolling to course
-         
+        DefaultTableModel dtm = (DefaultTableModel) tblCourseDetails.getModel();
+        dtm.setRowCount(0);
+        for (Course course : student.getCourseList()) {
+            Object[] row = new Object[5];
+            row[0] = course;
+            row[1] = course.getCourseName();
+            row[2] = course.getFaculty().getFull_name();
+            row[3] = course.getRegion();
+            row[4] = course.getLang();
+            dtm.addRow(row);
+        }
     }
+
 }
