@@ -9,6 +9,7 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import model.AdminPkg.*;
 import model.CoursePkg.CourseCatalog;
+import ui.login.Employer.EmployerLoginPage;
 import ui.login.Student.StudentLoginPage;
 import ui.login.Faculty.FacultyLoginPage;
 
@@ -163,7 +164,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void employerLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employerLoginActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this,"Not yet configured","warning", JOptionPane.WARNING_MESSAGE);
+        EmployerLoginPage employerLoginPage = new EmployerLoginPage(userProcessContainer, studentDir, facultyDir, courseCatalog);
+        userProcessContainer.add("EmployerLoginPage",employerLoginPage);
+        ((CardLayout)userProcessContainer.getLayout()).next(userProcessContainer);
+
+//        JOptionPane.showMessageDialog(this,"Not yet configured","warning", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_employerLoginActionPerformed
 
     /**

@@ -202,7 +202,7 @@ public class ManageStudent extends javax.swing.JPanel {
         String student_id = studentIdTextArea.getText();
         String pwd = pwdTextArea.getText();
         Boolean isAccountDisabled = isAccDisabled.isSelected();
-        Boolean isAuthToUpdateInfo = this.isAuthToUpdateInfo.isSelected();
+        Boolean isAuthToUpdateInfo = this.isAuthToUpdateInfo.isSelected();      
         if (student_id.isBlank() || pwd.isBlank()) {
             JOptionPane.showMessageDialog(this, "Credentials cannot be empty", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {

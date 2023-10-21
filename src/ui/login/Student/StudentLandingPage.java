@@ -5,6 +5,7 @@
 package ui.login.Student;
 
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.AdminPkg.Student;
@@ -50,6 +51,7 @@ public class StudentLandingPage extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCourseDetails = new javax.swing.JTable();
         btnRefresh = new javax.swing.JButton();
+        btnDropCourses = new javax.swing.JButton();
 
         jLabel1.setText("Welcome");
 
@@ -102,16 +104,19 @@ public class StudentLandingPage extends javax.swing.JPanel {
             }
         });
 
+        btnDropCourses.setText("Drop Courses");
+        btnDropCourses.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDropCoursesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(215, 215, 215)
-                        .addComponent(btnBrowse)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,12 +130,19 @@ public class StudentLandingPage extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 423, Short.MAX_VALUE)
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(welcomeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(welcomeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(110, 110, 110)
+                                .addComponent(btnBrowse)
+                                .addGap(99, 99, 99)
+                                .addComponent(btnDropCourses, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +157,9 @@ public class StudentLandingPage extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(btnBrowse)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBrowse)
+                    .addComponent(btnDropCourses))
                 .addGap(99, 99, 99)
                 .addComponent(backBtn)
                 .addGap(66, 66, 66))
@@ -179,10 +193,23 @@ public class StudentLandingPage extends javax.swing.JPanel {
         populateTable();
     }//GEN-LAST:event_btnRefreshActionPerformed
 
+    private void btnDropCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropCoursesActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tblCourseDetails.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row to drop courses", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            Course course = (Course) tblCourseDetails.getValueAt(selectedRow, 0);
+            student.deleteCourseToStudent(course);
+             JOptionPane.showMessageDialog(null, "Course dropped successfully!");
+        }
+    }//GEN-LAST:event_btnDropCoursesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JButton btnBrowse;
+    private javax.swing.JButton btnDropCourses;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnViewProfile;
     private javax.swing.JLabel jLabel1;

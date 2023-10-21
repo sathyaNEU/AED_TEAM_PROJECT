@@ -64,6 +64,11 @@ public class Student {
         JOptionPane.showMessageDialog(null, "Course has been registered successfully!");
 
     }
+    public void deleteCourseToStudent(Course newCourse) {
+        courseList.remove(newCourse);
+       
+
+    }
 
     public Boolean getIsAccActive() {
         return isAccActive;

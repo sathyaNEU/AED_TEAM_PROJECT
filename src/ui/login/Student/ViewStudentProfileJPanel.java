@@ -26,6 +26,9 @@ public class ViewStudentProfileJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.student = student;
+        txtName.setEditable(false);
+        txtUserId.setEditable(false);
+        txtPassword.setEditable(false);
         btnSave.setEnabled(false);
         btnUpdate.setEnabled(true);
         populateStudentDetails();
@@ -164,6 +167,16 @@ public class ViewStudentProfileJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         btnUpdate.setEnabled(false);
         btnSave.setEnabled(true);
+        if(student.getIsAuthToUpdateInfo().booleanValue() == false){
+           txtName.setEditable(true);
+           txtUserId.setEditable(true);
+           txtPassword.setEditable(true);
+        }else
+        {
+            txtName.setEditable(true);
+          
+        }
+            
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
