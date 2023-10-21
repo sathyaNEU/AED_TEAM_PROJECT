@@ -26,6 +26,10 @@ public class ViewFacultyProfileJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.faculty = faculty;
+        txtName.setEditable(false);
+        txtFacultyId.setEditable(false);
+        txtPassword.setEditable(false);
+        txtSpeciality.setEditable(false);
         btnSave.setEnabled(false);
         btnUpdate.setEnabled(true);
         populateFacultyDetails();
@@ -204,6 +208,16 @@ public class ViewFacultyProfileJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         btnUpdate.setEnabled(false);
         btnSave.setEnabled(true);
+        if (faculty.getIsAuthToUpdateInfo().booleanValue() == false) {
+            txtName.setEditable(true);
+            txtFacultyId.setEditable(true);
+            txtPassword.setEditable(true);
+            txtSpeciality.setEditable(true);
+        } else {
+            txtName.setEditable(true);
+            txtSpeciality.setEditable(true);
+
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
 
