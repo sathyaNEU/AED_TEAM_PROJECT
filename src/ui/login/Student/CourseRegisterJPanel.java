@@ -54,7 +54,7 @@ public class CourseRegisterJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         courseIdTextArea = new javax.swing.JTextField();
         courseNameTextArea = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        registerBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         facultyNameTextArea = new javax.swing.JTextField();
@@ -79,10 +79,10 @@ public class CourseRegisterJPanel extends javax.swing.JPanel {
 
         courseNameTextArea.setEditable(false);
 
-        jButton1.setText("Register");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        registerBtn.setText("Register");
+        registerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                registerBtnActionPerformed(evt);
             }
         });
 
@@ -198,7 +198,7 @@ public class CourseRegisterJPanel extends javax.swing.JPanel {
                                 .addComponent(priceTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(275, 275, 275)
-                        .addComponent(jButton1)))
+                        .addComponent(registerBtn)))
                 .addGap(63, 63, 63))
         );
         layout.setVerticalGroup(
@@ -237,7 +237,7 @@ public class CourseRegisterJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel6)
                     .addComponent(langTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(registerBtn)
                 .addGap(51, 51, 51)
                 .addComponent(backBtn)
                 .addGap(61, 61, 61))
@@ -275,11 +275,13 @@ public class CourseRegisterJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_priceTextAreaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
         // TODO add your handling code here:
         student.addCourseToStudent(course);
+        student.getTranscript().getGrade().put(String.valueOf(this.course.getCourseId()), "Not Yet Graded" );
+        student.getTranscript().getCourse_status().put(String.valueOf(course.getCourseId()), "PURSUING");
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_registerBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -288,7 +290,6 @@ public class CourseRegisterJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField courseNameTextArea;
     private javax.swing.JTextField creditsTextArea;
     private javax.swing.JTextField facultyNameTextArea;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -302,5 +303,6 @@ public class CourseRegisterJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField priceTextArea;
     private javax.swing.JTextField ratingTextArea;
     private javax.swing.JTextField regionTextArea;
+    private javax.swing.JButton registerBtn;
     // End of variables declaration//GEN-END:variables
 }

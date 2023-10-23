@@ -56,6 +56,8 @@ public class StudentLandingPage extends javax.swing.JPanel {
         tblCourseDetails = new javax.swing.JTable();
         btnRefresh = new javax.swing.JButton();
         scheduleAppointmentBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        reqTranscBtn = new javax.swing.JButton();
 
         jLabel1.setText("Welcome");
 
@@ -115,6 +117,15 @@ public class StudentLandingPage extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setText("YOUR REGISTERED COURSES");
+
+        reqTranscBtn.setText("Request Transcript");
+        reqTranscBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reqTranscBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,10 +140,16 @@ public class StudentLandingPage extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnViewProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 423, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(welcomeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 423, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(welcomeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(153, 153, 153)
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
@@ -140,7 +157,9 @@ public class StudentLandingPage extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBrowse)
                         .addGap(46, 46, 46)
-                        .addComponent(scheduleAppointmentBtn))
+                        .addComponent(scheduleAppointmentBtn)
+                        .addGap(44, 44, 44)
+                        .addComponent(reqTranscBtn))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -153,13 +172,16 @@ public class StudentLandingPage extends javax.swing.JPanel {
                     .addComponent(btnViewProfile)
                     .addComponent(welcomeLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(btnRefresh)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRefresh)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBrowse)
-                    .addComponent(scheduleAppointmentBtn))
+                    .addComponent(scheduleAppointmentBtn)
+                    .addComponent(reqTranscBtn))
                 .addGap(90, 90, 90)
                 .addComponent(backBtn)
                 .addGap(66, 66, 66))
@@ -211,6 +233,13 @@ public class StudentLandingPage extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Register for courses before\n booking an appointments", "error", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_scheduleAppointmentBtnActionPerformed
 
+    private void reqTranscBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reqTranscBtnActionPerformed
+        // TODO add your handling code here:
+        TransciriptJPanel transciriptJPanel = new TransciriptJPanel(this.userProcessContainer,this.student);
+        this.userProcessContainer.add("transciriptJPanel",transciriptJPanel);
+        ((CardLayout)userProcessContainer.getLayout()).next(userProcessContainer);
+    }//GEN-LAST:event_reqTranscBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
@@ -218,7 +247,9 @@ public class StudentLandingPage extends javax.swing.JPanel {
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnViewProfile;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton reqTranscBtn;
     private javax.swing.JButton scheduleAppointmentBtn;
     private javax.swing.JTable tblCourseDetails;
     private javax.swing.JLabel welcomeLbl;

@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.AdminPkg.Student;
 import model.AdminPkg.StudentDirectory;
+import model.CoursePkg.CourseCatalog;
 
 /**
  *
@@ -19,14 +20,16 @@ public class ManageStudent extends javax.swing.JPanel {
     JPanel userProcessContainer;
     StudentDirectory studentDir;
     Student student;
+    CourseCatalog courseCatalog;
 
     /**
      * Creates new form ManageStudent
      */
-    public ManageStudent(JPanel userProcessContainer, StudentDirectory studentDir) {
+    public ManageStudent(JPanel userProcessContainer, StudentDirectory studentDir, CourseCatalog coruseCatalog) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.studentDir = studentDir;
+        this.courseCatalog = courseCatalog;
         this.hideInOutPanel.setVisible(false);
         this.isAccDisabled.setEnabled(false);
         this.isAuthToUpdateInfo.setEnabled(false);
@@ -54,6 +57,7 @@ public class ManageStudent extends javax.swing.JPanel {
         isAuthToUpdateInfo = new javax.swing.JRadioButton();
         updateBtn = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
+        academicBtn = new javax.swing.JButton();
         createStudentBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         idTextField = new javax.swing.JTextField();
@@ -114,6 +118,14 @@ public class ManageStudent extends javax.swing.JPanel {
             }
         });
         hideInOutPanel.add(saveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, -1, -1));
+
+        academicBtn.setText("Academics");
+        academicBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                academicBtnActionPerformed(evt);
+            }
+        });
+        hideInOutPanel.add(academicBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, -1, -1));
 
         add(hideInOutPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 430, 210));
 
@@ -224,8 +236,16 @@ public class ManageStudent extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 
+    private void academicBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_academicBtnActionPerformed
+        // TODO add your handling code here:
+        GetStudentCourseInfoPanel getStudentCourseJPanel = new GetStudentCourseInfoPanel(userProcessContainer, student, courseCatalog);
+        userProcessContainer.add("getStudentCourseJPanel",getStudentCourseJPanel);
+        ((CardLayout)userProcessContainer.getLayout()).next(userProcessContainer);
+    }//GEN-LAST:event_academicBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton academicBtn;
     private javax.swing.JButton backBtn;
     private javax.swing.JButton createStudentBtn;
     private javax.swing.JPanel hideInOutPanel;

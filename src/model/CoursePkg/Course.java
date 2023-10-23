@@ -22,6 +22,7 @@ public class Course {
     private String lang;
     Faculty faculty;
     ArrayList<CourseTimeSchedule> courseTimeScheduleList;
+  
     private String semester;
 
     public String getRegion() {

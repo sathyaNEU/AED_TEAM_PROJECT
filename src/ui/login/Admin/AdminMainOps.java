@@ -8,6 +8,7 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 import model.AdminPkg.FacultyDirectory;
 import model.AdminPkg.StudentDirectory;
+import model.CoursePkg.CourseCatalog;
 
 /**
  *
@@ -21,12 +22,14 @@ public class AdminMainOps extends javax.swing.JPanel {
     JPanel userProcessContainer;
     StudentDirectory studentDir;
     FacultyDirectory facultyDir;
-
-    public AdminMainOps(JPanel userProcessContainer, StudentDirectory studentDir, FacultyDirectory facultyDir) {
+    CourseCatalog courseCatalog;
+    
+    public AdminMainOps(JPanel userProcessContainer, StudentDirectory studentDir, FacultyDirectory facultyDir, CourseCatalog coruseCatalog) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.studentDir = studentDir;
         this.facultyDir = facultyDir;
+        this.courseCatalog = courseCatalog;
     }
 
     /**
@@ -81,9 +84,9 @@ public class AdminMainOps extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(manageFaculty)
-                            .addComponent(manageStudent))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(manageStudent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(manageFaculty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -117,7 +120,7 @@ public class AdminMainOps extends javax.swing.JPanel {
 
     private void manageStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageStudentActionPerformed
         // TODO add your handling code here:
-        ManageStudent manageStudent = new ManageStudent(userProcessContainer, studentDir);
+        ManageStudent manageStudent = new ManageStudent(userProcessContainer, studentDir, courseCatalog);
         userProcessContainer.add(manageStudent);
         ((CardLayout) userProcessContainer.getLayout()).next(userProcessContainer);
     }//GEN-LAST:event_manageStudentActionPerformed
