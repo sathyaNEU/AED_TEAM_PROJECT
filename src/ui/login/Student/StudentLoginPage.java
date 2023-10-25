@@ -9,6 +9,7 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.AdminPkg.FacultyDirectory;
+import model.AdminPkg.OECA;
 import model.AdminPkg.Student;
 import model.AdminPkg.StudentDirectory;
 import model.CoursePkg.CourseCatalog;
@@ -26,13 +27,16 @@ public class StudentLoginPage extends javax.swing.JPanel {
     StudentDirectory studentDir;
     FacultyDirectory facultyDir;
     CourseCatalog courseCatalog;
+    OECA oeca;
+    
 
-    public StudentLoginPage(JPanel userProcessContainer, StudentDirectory studentDir, FacultyDirectory facultyDir, CourseCatalog courseCatalog) {
+    public StudentLoginPage(JPanel userProcessContainer, StudentDirectory studentDir, FacultyDirectory facultyDir, CourseCatalog courseCatalog, OECA oeca) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.studentDir = studentDir;
         this.facultyDir = facultyDir;
         this.courseCatalog = courseCatalog;
+        this.oeca = oeca;
 
     }
 
@@ -120,7 +124,7 @@ public class StudentLoginPage extends javax.swing.JPanel {
             Student student = studentDir.getStudentByUserId(student_id);
             if (student != null) {
                 if (student.getPwd().equals(pwd) && student.getIsAccActive()==true) {
-                    StudentLandingPage studentProfileJPanel = new StudentLandingPage(userProcessContainer, courseCatalog, student, facultyDir);
+                    StudentLandingPage studentProfileJPanel = new StudentLandingPage(userProcessContainer, courseCatalog, student, facultyDir, oeca);
                     userProcessContainer.add("studentProfileJPanel", studentProfileJPanel);
                     CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
                     cardLayout.next(userProcessContainer);
@@ -140,7 +144,7 @@ public class StudentLoginPage extends javax.swing.JPanel {
         //AdminMainOps adminMainOps = new AdminMainOps(userProcessContainer, studentDir, facultyDir);
         //this.userProcessContainer.add("adminMainOps",adminMainOps);
         Student student = studentDir.getStudentByUserId("stest");
-        StudentLandingPage studentProfileJPanel = new StudentLandingPage(userProcessContainer, courseCatalog, student, facultyDir);
+        StudentLandingPage studentProfileJPanel = new StudentLandingPage(userProcessContainer, courseCatalog, student, facultyDir, oeca);
         userProcessContainer.add("studentProfileJPanel", studentProfileJPanel);
         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
         cardLayout.next(userProcessContainer);

@@ -101,7 +101,7 @@ public class ViewCoursesJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnView.setText("View");
+        btnView.setText("View/Register for Courses");
         btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewActionPerformed(evt);

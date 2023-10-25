@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.AdminPkg.Faculty;
 import model.AdminPkg.FacultyDirectory;
+import model.AdminPkg.OECA;
 import model.AdminPkg.Student;
 import model.CoursePkg.Course;
 import model.CoursePkg.CourseCatalog;
@@ -27,12 +28,14 @@ public class StudentLandingPage extends javax.swing.JPanel {
     JPanel userProcessContainer;
     FacultyDirectory facultyDir;
     Student student;
+    OECA oeca;
 
-    public StudentLandingPage(JPanel userProcessContainer, CourseCatalog courseCatalog, Student student, FacultyDirectory facultyDir) {
+    public StudentLandingPage(JPanel userProcessContainer, CourseCatalog courseCatalog, Student student, FacultyDirectory facultyDir, OECA oeca) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.courseCatalog = courseCatalog;
         this.student = student;
+        this.oeca =oeca;
         this.facultyDir = facultyDir;
         welcomeLbl.setText(this.student.getFull_name());
         populateTable();
@@ -59,6 +62,7 @@ public class StudentLandingPage extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         reqTranscBtn = new javax.swing.JButton();
         btnDropCourses = new javax.swing.JButton();
+        graduateStatusBtn = new javax.swing.JButton();
 
         jLabel1.setText("Welcome");
 
@@ -134,6 +138,13 @@ public class StudentLandingPage extends javax.swing.JPanel {
             }
         });
 
+        graduateStatusBtn.setText("Check Graduate Status");
+        graduateStatusBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                graduateStatusBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,19 +174,22 @@ public class StudentLandingPage extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnBrowse)
-                                .addGap(46, 46, 46)
-                                .addComponent(scheduleAppointmentBtn)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnBrowse)
+                                        .addGap(46, 46, 46)
+                                        .addComponent(scheduleAppointmentBtn))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(231, 231, 231)
+                                        .addComponent(btnDropCourses)))
                                 .addGap(50, 50, 50)
-                                .addComponent(reqTranscBtn))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(reqTranscBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(graduateStatusBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(0, 118, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(285, 285, 285)
-                .addComponent(btnDropCourses)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,7 +211,9 @@ public class StudentLandingPage extends javax.swing.JPanel {
                     .addComponent(scheduleAppointmentBtn)
                     .addComponent(reqTranscBtn))
                 .addGap(36, 36, 36)
-                .addComponent(btnDropCourses)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDropCourses)
+                    .addComponent(graduateStatusBtn))
                 .addGap(31, 31, 31)
                 .addComponent(backBtn)
                 .addGap(66, 66, 66))
@@ -271,6 +287,20 @@ public class StudentLandingPage extends javax.swing.JPanel {
         }        
     }//GEN-LAST:event_btnDropCoursesActionPerformed
 
+    private void graduateStatusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graduateStatusBtnActionPerformed
+        // TODO add your handling code here:
+        int credits = this.oeca.isReadyTOGraduate(this.student.getTranscript());
+        if(credits>=32){
+            JOptionPane.showMessageDialog(this, "Congradulations!. You are all set to graduate");
+        }
+        else{
+             JOptionPane.showMessageDialog(this, "You still have " + (32-credits) +"more credits to\ncomplete this degree","ERROR", JOptionPane.ERROR_MESSAGE);
+             if(this.oeca.doesStudentAlreadyGraduated(student))
+                 this.oeca.removeStudentFromGradStudent(student);
+        }
+        
+    }//GEN-LAST:event_graduateStatusBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
@@ -278,6 +308,7 @@ public class StudentLandingPage extends javax.swing.JPanel {
     private javax.swing.JButton btnDropCourses;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnViewProfile;
+    private javax.swing.JButton graduateStatusBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

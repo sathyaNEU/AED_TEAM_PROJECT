@@ -30,10 +30,17 @@ public class Student {
     Transcript transcript;
     Employer employer;
     Boolean isEmployed;
+    float cgpa;
     HashMap<Boolean,Employer> employment_status;
 
+    public float getCgpa() {
+        return cgpa;
+    }
 
-
+    public void setCgpa(float cgpa) {
+        this.cgpa = cgpa;
+    }
+    
     public Student() {
         courseList = new ArrayList<>();
         apptSchedule = new ArrayList<>();

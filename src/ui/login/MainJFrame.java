@@ -27,6 +27,7 @@ public class MainJFrame extends javax.swing.JFrame {
     FacultyDirectory facultyDir;
     EmployerDirectory employerDir;
     CourseCatalog courseCatalog;
+    OECA oeca;
     
     
     public MainJFrame() {
@@ -35,6 +36,7 @@ public class MainJFrame extends javax.swing.JFrame {
         facultyDir = new FacultyDirectory();
         courseCatalog = new CourseCatalog();
         employerDir = new EmployerDirectory();
+        this.oeca = new OECA();
         BusinessLogic bl = new BusinessLogic(studentDir, facultyDir, employerDir);
         Semester.setSemester("f23");
     }
@@ -157,7 +159,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void studentLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentLoginActionPerformed
         // TODO add your handling code here:
-        StudentLoginPage studentLoginPage = new StudentLoginPage(userProcessContainer, studentDir, facultyDir, courseCatalog);
+        StudentLoginPage studentLoginPage = new StudentLoginPage(userProcessContainer, studentDir, facultyDir, courseCatalog, oeca);
         userProcessContainer.add("studentLoginPage",studentLoginPage);
         ((CardLayout)userProcessContainer.getLayout()).next(userProcessContainer);
 
