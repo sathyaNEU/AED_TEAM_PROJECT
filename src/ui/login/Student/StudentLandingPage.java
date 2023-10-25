@@ -8,6 +8,8 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.AdminPkg.Faculty;
+import model.AdminPkg.FacultyDirectory;
 import model.AdminPkg.Student;
 import model.CoursePkg.Course;
 import model.CoursePkg.CourseCatalog;
@@ -21,15 +23,17 @@ public class StudentLandingPage extends javax.swing.JPanel {
     /**
      * Creates new form StudentProfileJPanel
      */
-    private CourseCatalog courseCatalog;
-    private JPanel userProcessContainer;
+    CourseCatalog courseCatalog;
+    JPanel userProcessContainer;
+    FacultyDirectory facultyDir;
     Student student;
 
-    public StudentLandingPage(JPanel userProcessContainer, CourseCatalog courseCatalog, Student student) {
+    public StudentLandingPage(JPanel userProcessContainer, CourseCatalog courseCatalog, Student student, FacultyDirectory facultyDir) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.courseCatalog = courseCatalog;
         this.student = student;
+        this.facultyDir = facultyDir;
         welcomeLbl.setText(this.student.getFull_name());
         populateTable();
     }
@@ -44,13 +48,16 @@ public class StudentLandingPage extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        welcomeLbl = new javax.swing.JLabel();
         btnViewProfile = new javax.swing.JButton();
         btnBrowse = new javax.swing.JButton();
-        welcomeLbl = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCourseDetails = new javax.swing.JTable();
         btnRefresh = new javax.swing.JButton();
+        scheduleAppointmentBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        reqTranscBtn = new javax.swing.JButton();
         btnDropCourses = new javax.swing.JButton();
 
         jLabel1.setText("Welcome");
@@ -84,7 +91,7 @@ public class StudentLandingPage extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Course Name", "Course ID", "Faculty", "Region", "Language"
+                "Course ID", "Course Name", "Faculty", "Region", "Language"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -101,6 +108,22 @@ public class StudentLandingPage extends javax.swing.JPanel {
         btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRefreshActionPerformed(evt);
+            }
+        });
+
+        scheduleAppointmentBtn.setText("Schedule Appointment");
+        scheduleAppointmentBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                scheduleAppointmentBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("YOUR REGISTERED COURSES");
+
+        reqTranscBtn.setText("Request Transcript");
+        reqTranscBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reqTranscBtnActionPerformed(evt);
             }
         });
 
@@ -127,22 +150,32 @@ public class StudentLandingPage extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(btnRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnViewProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 423, Short.MAX_VALUE)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(welcomeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(welcomeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(153, 153, 153)
+                                        .addComponent(jLabel2)
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(110, 110, 110)
                                 .addComponent(btnBrowse)
-                                .addGap(99, 99, 99)
-                                .addComponent(btnDropCourses, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(46, 46, 46)
+                                .addComponent(scheduleAppointmentBtn)
+                                .addGap(50, 50, 50)
+                                .addComponent(reqTranscBtn))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 118, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(285, 285, 285)
+                .addComponent(btnDropCourses)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,14 +186,19 @@ public class StudentLandingPage extends javax.swing.JPanel {
                     .addComponent(btnViewProfile)
                     .addComponent(welcomeLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(btnRefresh)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRefresh)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBrowse)
-                    .addComponent(btnDropCourses))
-                .addGap(99, 99, 99)
+                    .addComponent(scheduleAppointmentBtn)
+                    .addComponent(reqTranscBtn))
+                .addGap(36, 36, 36)
+                .addComponent(btnDropCourses)
+                .addGap(31, 31, 31)
                 .addComponent(backBtn)
                 .addGap(66, 66, 66))
         );
@@ -193,16 +231,44 @@ public class StudentLandingPage extends javax.swing.JPanel {
         populateTable();
     }//GEN-LAST:event_btnRefreshActionPerformed
 
+    private void scheduleAppointmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scheduleAppointmentBtnActionPerformed
+        // TODO add your handling code here:
+        if(!this.student.getCourseList().isEmpty()){
+            int index = tblCourseDetails.getSelectedRow();
+            if(index!=-1){
+                DefaultTableModel dtm = (DefaultTableModel) tblCourseDetails.getModel();
+                Faculty bookFaculty = ((Course)dtm.getValueAt(index, 0)).getFaculty();
+                ScheduleAppointmentJPanel scheduleAppointmentJPanel = new ScheduleAppointmentJPanel(userProcessContainer,  student, bookFaculty );
+                this.userProcessContainer.add("scheduleAppointmentJPanel",scheduleAppointmentJPanel);
+                ((CardLayout)this.userProcessContainer.getLayout()).next(this.userProcessContainer);
+            }
+            else
+              JOptionPane.showMessageDialog(this, "Select Course to book an appointment", "error", JOptionPane.ERROR_MESSAGE);
+        }
+        else
+            JOptionPane.showMessageDialog(this, "Register for courses before\n booking an appointments", "error", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_scheduleAppointmentBtnActionPerformed
+
+    private void reqTranscBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reqTranscBtnActionPerformed
+        // TODO add your handling code here:
+        TransciriptJPanel transciriptJPanel = new TransciriptJPanel(this.userProcessContainer,this.student);
+        this.userProcessContainer.add("transciriptJPanel",transciriptJPanel);
+        ((CardLayout)userProcessContainer.getLayout()).next(userProcessContainer);
+    }//GEN-LAST:event_reqTranscBtnActionPerformed
+
     private void btnDropCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropCoursesActionPerformed
         // TODO add your handling code here:
         int selectedRow = tblCourseDetails.getSelectedRow();
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a row to drop courses", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
+             int index = JOptionPane.showConfirmDialog(this, "Do you want to Drop Your Course?","Info",JOptionPane.YES_NO_OPTION);
+             if (index==JOptionPane.YES_OPTION) {
             Course course = (Course) tblCourseDetails.getValueAt(selectedRow, 0);
             student.deleteCourseToStudent(course);
-             JOptionPane.showMessageDialog(null, "Course dropped successfully!");
-        }
+            JOptionPane.showMessageDialog(null, "Course Sucessfully Dropped!");
+        } 
+        }        
     }//GEN-LAST:event_btnDropCoursesActionPerformed
 
 
@@ -213,7 +279,10 @@ public class StudentLandingPage extends javax.swing.JPanel {
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnViewProfile;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton reqTranscBtn;
+    private javax.swing.JButton scheduleAppointmentBtn;
     private javax.swing.JTable tblCourseDetails;
     private javax.swing.JLabel welcomeLbl;
     // End of variables declaration//GEN-END:variables

@@ -176,7 +176,7 @@ public class ViewStudentProfileJPanel extends javax.swing.JPanel {
             txtName.setEditable(true);
           
         }
-            
+           
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

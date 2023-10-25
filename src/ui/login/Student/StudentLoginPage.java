@@ -120,7 +120,7 @@ public class StudentLoginPage extends javax.swing.JPanel {
             Student student = studentDir.getStudentByUserId(student_id);
             if (student != null) {
                 if (student.getPwd().equals(pwd) && student.getIsAccActive()==true) {
-                    StudentLandingPage studentProfileJPanel = new StudentLandingPage(userProcessContainer, courseCatalog, student);
+                    StudentLandingPage studentProfileJPanel = new StudentLandingPage(userProcessContainer, courseCatalog, student, facultyDir);
                     userProcessContainer.add("studentProfileJPanel", studentProfileJPanel);
                     CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
                     cardLayout.next(userProcessContainer);
@@ -140,7 +140,7 @@ public class StudentLoginPage extends javax.swing.JPanel {
         //AdminMainOps adminMainOps = new AdminMainOps(userProcessContainer, studentDir, facultyDir);
         //this.userProcessContainer.add("adminMainOps",adminMainOps);
         Student student = studentDir.getStudentByUserId("stest");
-        StudentLandingPage studentProfileJPanel = new StudentLandingPage(userProcessContainer, courseCatalog, student);
+        StudentLandingPage studentProfileJPanel = new StudentLandingPage(userProcessContainer, courseCatalog, student, facultyDir);
         userProcessContainer.add("studentProfileJPanel", studentProfileJPanel);
         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
         cardLayout.next(userProcessContainer);

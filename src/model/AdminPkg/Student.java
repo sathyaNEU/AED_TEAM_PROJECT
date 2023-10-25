@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import model.CoursePkg.Course;
+import model.DateAndTime.MeetTimeSchedule;
 
 /**
  *
@@ -24,22 +25,29 @@ public class Student {
     Boolean isAccActive;
     Boolean isAuthToUpdateInfo;
     ArrayList<Course> courseList;
-    Map<String, List<Course>> map;
+    ArrayList<MeetTimeSchedule> apptSchedule;
+     // "FAIL PURSUING PASS"
+    Transcript transcript;
+
+
 
     public Student() {
         courseList = new ArrayList<>();
-        map = new HashMap();
+        apptSchedule = new ArrayList<>();
+        transcript = new Transcript(this);
         isAccActive = true;
         isAuthToUpdateInfo = false;
     }
 
-    public Map<String, List<Course>> getMap() {
-        return map;
+    public Transcript getTranscript() {
+        return transcript;
     }
 
-    public void setMap(Map<String, List<Course>> map) {
-        this.map = map;
+    public void setTranscript(Transcript transcript) {
+        this.transcript = transcript;
     }
+
+
 
     public ArrayList<Course> getCourseList() {
         return courseList;
@@ -58,15 +66,7 @@ public class Student {
 
         }
         courseList.add(newCourse);
-        map.put(newCourse.getSemester(), courseList);
-         //Map<String, List<Course>> map = student.getMap();
-        //List<Course> courseList = map.get("fall2021");
         JOptionPane.showMessageDialog(null, "Course has been registered successfully!");
-
-    }
-    public void deleteCourseToStudent(Course newCourse) {
-        courseList.remove(newCourse);
-       
 
     }
 
@@ -117,6 +117,21 @@ public class Student {
     public void setDomain(String domain) {
         this.domain = domain;
     }
+    
+    public void setApptSchedule(MeetTimeSchedule schedule){
+        this.apptSchedule.add(schedule);
+    }
+
+    public ArrayList<MeetTimeSchedule> getApptSchedule() {
+        return apptSchedule;
+    }
+    
+    public void deleteCourseToStudent(Course newCourse) {
+        courseList.remove(newCourse);
+       
+
+    }
+    
 
     @Override
     public String toString() {

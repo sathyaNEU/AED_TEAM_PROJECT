@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.AdminPkg.FacultyDirectory;
 import model.AdminPkg.StudentDirectory;
+import model.CoursePkg.CourseCatalog;
 
 /**
  *
@@ -22,12 +23,14 @@ public class AdminLoginPage extends javax.swing.JPanel {
     JPanel userProcessContainer;
     StudentDirectory studentDir;
     FacultyDirectory facultyDir;
+    CourseCatalog courseCatalog;
 
-    public AdminLoginPage(JPanel userProcessContainer, StudentDirectory studentDir, FacultyDirectory facultyDir) {
+    public AdminLoginPage(JPanel userProcessContainer, StudentDirectory studentDir, FacultyDirectory facultyDir, CourseCatalog coruseCatalog) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.studentDir = studentDir;
         this.facultyDir = facultyDir;
+        this.courseCatalog = courseCatalog;
 
     }
 
@@ -113,7 +116,7 @@ public class AdminLoginPage extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Admin id or password is emopty", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
             if (admin_id.equals("admin") && pwd.equals("admin")) {
-                AdminMainOps adminMainOps = new AdminMainOps(userProcessContainer, studentDir, facultyDir);
+                AdminMainOps adminMainOps = new AdminMainOps(userProcessContainer, studentDir, facultyDir, courseCatalog);
                 this.userProcessContainer.add("adminMainOps", adminMainOps);
                 CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
                 cardLayout.next(userProcessContainer);
@@ -125,7 +128,7 @@ public class AdminLoginPage extends javax.swing.JPanel {
 
     private void bypassBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bypassBtnActionPerformed
         // TODO add your handling code here:
-        AdminMainOps adminMainOps = new AdminMainOps(userProcessContainer, studentDir, facultyDir);
+        AdminMainOps adminMainOps = new AdminMainOps(userProcessContainer, studentDir, facultyDir, courseCatalog);
         this.userProcessContainer.add("adminMainOps", adminMainOps);
         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
         cardLayout.next(userProcessContainer);

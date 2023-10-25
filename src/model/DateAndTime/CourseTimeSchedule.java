@@ -44,5 +44,8 @@ public class CourseTimeSchedule {
         this.timing = timing;
     }
     
-
+@Override
+    public String toString() {
+        return day;
+    }
 }

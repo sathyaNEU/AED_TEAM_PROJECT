@@ -26,6 +26,7 @@ public class CreateCourseJPanel extends javax.swing.JPanel {
     StudentDirectory studentDir;
     Faculty faculty;
     CourseCatalog courseCatalog;
+    Course course;
 
     public CreateCourseJPanel(JPanel userProcessContainer, StudentDirectory studentDir, Faculty faculty, CourseCatalog courseCatalog) {
         initComponents();
@@ -59,6 +60,7 @@ public class CreateCourseJPanel extends javax.swing.JPanel {
         langTextField = new javax.swing.JTextField();
         saveBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setText("CREATE COURSE");
 
@@ -85,6 +87,13 @@ public class CreateCourseJPanel extends javax.swing.JPanel {
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Add Availability ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -123,12 +132,16 @@ public class CreateCourseJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(43, 43, 43)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(saveBtn)
-                                    .addComponent(langTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(langTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(backBtn)))
+                        .addComponent(backBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(saveBtn)))
                 .addContainerGap(250, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -160,9 +173,11 @@ public class CreateCourseJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(langTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(41, 41, 41)
                 .addComponent(saveBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addGap(64, 64, 64)
                 .addComponent(backBtn)
                 .addGap(143, 143, 143))
         );
@@ -170,6 +185,10 @@ public class CreateCourseJPanel extends javax.swing.JPanel {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
+        if(course!=null){
+        if (course.getCourseId() == 0 || course.getCourseName().isBlank() || course.getCredit() ==0 || course.getPrice() == 0.0 || course.getRegion().isBlank() || course.getLang().isBlank()) {
+            JOptionPane.showMessageDialog(this, "All fields mandatory !", "WARNING", JOptionPane.WARNING_MESSAGE);
+        } }
         userProcessContainer.remove(this);
         ((CardLayout) userProcessContainer.getLayout()).previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
@@ -196,8 +215,8 @@ public class CreateCourseJPanel extends javax.swing.JPanel {
 
         if (course_name.isBlank() || course_id.isBlank() || price.isBlank() || credits.isBlank() || region.isBlank() || lang.isBlank()) {
             JOptionPane.showMessageDialog(this, "All fields mandatory !", "WARNING", JOptionPane.WARNING_MESSAGE);
-        } else {
-            Course course = new Course();
+        }else {
+            
             course.setCourseId(CourseID);
             course.setCourseName(course_name);
             course.setFaculty(faculty);
@@ -213,12 +232,22 @@ public class CreateCourseJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_saveBtnActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Course course = new Course();
+        this.course=course;
+        AddAvailCourseJPanel addAvailCourseJPanel = new AddAvailCourseJPanel(this.userProcessContainer, course, faculty);
+        userProcessContainer.add("AddAvailCourseJPanel", addAvailCourseJPanel);
+        ((CardLayout) userProcessContainer.getLayout()).next(userProcessContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JTextField courseIdTextField;
     private javax.swing.JTextField courseNameTextField;
     private javax.swing.JTextField creditsTextField;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -137,12 +137,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void AdminLoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminLoginBtnActionPerformed
         // TODO add your handling code here:
-         AdminLoginPage adminLoginPage = new AdminLoginPage(userProcessContainer,studentDir,facultyDir);
+         AdminLoginPage adminLoginPage = new AdminLoginPage(userProcessContainer,studentDir,facultyDir,courseCatalog);
          this.userProcessContainer.add("adminLoginPage",adminLoginPage);
          CardLayout cardLayout = (CardLayout)userProcessContainer.getLayout();
          cardLayout.next(userProcessContainer);
-         
-        
+     
     }//GEN-LAST:event_AdminLoginBtnActionPerformed
 
     private void professorLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_professorLoginActionPerformed
@@ -167,8 +166,6 @@ public class MainJFrame extends javax.swing.JFrame {
         EmployerLoginPage employerLoginPage = new EmployerLoginPage(userProcessContainer, studentDir, facultyDir, courseCatalog);
         userProcessContainer.add("EmployerLoginPage",employerLoginPage);
         ((CardLayout)userProcessContainer.getLayout()).next(userProcessContainer);
-
-//        JOptionPane.showMessageDialog(this,"Not yet configured","warning", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_employerLoginActionPerformed
 
     /**
