@@ -7,6 +7,8 @@ package ui.login.Employer;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.AdminPkg.Employer;
+import model.AdminPkg.EmployerDirectory;
 import model.AdminPkg.FacultyDirectory;
 import model.AdminPkg.StudentDirectory;
 import model.CoursePkg.CourseCatalog;
@@ -23,13 +25,16 @@ public class EmployerLoginPage extends javax.swing.JPanel {
     JPanel userProcessContainer;
     StudentDirectory studentDir;
     FacultyDirectory facultyDir;
+    EmployerDirectory employerDir;
     CourseCatalog courseCatalog;
 
-    public EmployerLoginPage(JPanel userProcessContainer, StudentDirectory studentDir, FacultyDirectory facultyDir, CourseCatalog courseCatalog) {
+    public EmployerLoginPage(JPanel userProcessContainer, StudentDirectory studentDir,
+            FacultyDirectory facultyDir, EmployerDirectory employerDir, CourseCatalog courseCatalog) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.studentDir = studentDir;
         this.facultyDir = facultyDir;
+        this.employerDir = employerDir;
         this.courseCatalog = courseCatalog;
     }
 
@@ -132,18 +137,27 @@ public class EmployerLoginPage extends javax.swing.JPanel {
         if (employer_id.isBlank() || pwd.isBlank()) {
             JOptionPane.showMessageDialog(this, "Employer id or password is empty", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
-
-            EmployerLandingPage employerLandingPage = new EmployerLandingPage(userProcessContainer, studentDir, facultyDir, courseCatalog);
-            userProcessContainer.add("EmployerLandingPage", employerLandingPage);
-            CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
-            cardLayout.next(userProcessContainer);
+            Employer employer = this.employerDir.getEmployerFromEmployerId(employer_id);
+            if(employer==null)
+                JOptionPane.showMessageDialog(this, "Employer ID or password is incorrect");
+            else {
+                if(employer.getEmp_id().equals(employer_id) && employer.getPwd().equals(pwd) && employer.getIsAccActive()==true){
+                  EmployerLandingPage employerLandingPage = new EmployerLandingPage(userProcessContainer, studentDir, facultyDir, employer, courseCatalog);
+                  userProcessContainer.add("EmployerLandingPage", employerLandingPage);
+                  CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+                  cardLayout.next(userProcessContainer);
+                }
+                else
+                   JOptionPane.showMessageDialog(this, "Employer ID or password is incorrect"); 
+            }
 
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnBypassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBypassActionPerformed
         // TODO add your handling code here:
-        EmployerLandingPage employerLandingPage = new EmployerLandingPage(userProcessContainer, studentDir, facultyDir, courseCatalog);
+        Employer employer = this.employerDir.getEmployerFromEmployerId("etest");
+        EmployerLandingPage employerLandingPage = new EmployerLandingPage(userProcessContainer, studentDir, facultyDir,employer, courseCatalog);
         userProcessContainer.add("EmployerLandingPage", employerLandingPage);
         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
         cardLayout.next(userProcessContainer);

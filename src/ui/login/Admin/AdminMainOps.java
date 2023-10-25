@@ -6,6 +6,7 @@ package ui.login.Admin;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import model.AdminPkg.EmployerDirectory;
 import model.AdminPkg.FacultyDirectory;
 import model.AdminPkg.StudentDirectory;
 import model.CoursePkg.CourseCatalog;
@@ -22,13 +23,15 @@ public class AdminMainOps extends javax.swing.JPanel {
     JPanel userProcessContainer;
     StudentDirectory studentDir;
     FacultyDirectory facultyDir;
+    EmployerDirectory employerDir;
     CourseCatalog courseCatalog;
     
-    public AdminMainOps(JPanel userProcessContainer, StudentDirectory studentDir, FacultyDirectory facultyDir, CourseCatalog coruseCatalog) {
+    public AdminMainOps(JPanel userProcessContainer, StudentDirectory studentDir, FacultyDirectory facultyDir,EmployerDirectory employerDir, CourseCatalog coruseCatalog) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.studentDir = studentDir;
         this.facultyDir = facultyDir;
+        this.employerDir = employerDir;
         this.courseCatalog = courseCatalog;
     }
 
@@ -46,6 +49,8 @@ public class AdminMainOps extends javax.swing.JPanel {
         manageFaculty = new javax.swing.JButton();
         manageStudent = new javax.swing.JButton();
         homeBtn = new javax.swing.JButton();
+        manageEmp = new javax.swing.JButton();
+        asscEmpBtn = new javax.swing.JButton();
 
         jLabel1.setText("Admin Main Operations");
 
@@ -72,10 +77,28 @@ public class AdminMainOps extends javax.swing.JPanel {
             }
         });
 
+        manageEmp.setText("Manage Employer");
+        manageEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageEmpActionPerformed(evt);
+            }
+        });
+
+        asscEmpBtn.setText("Associate Employment");
+        asscEmpBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asscEmpBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(homeBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(209, 209, 209)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,13 +109,12 @@ public class AdminMainOps extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(manageStudent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(manageFaculty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(manageFaculty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(manageEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(56, 56, 56)
+                        .addComponent(asscEmpBtn)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(homeBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,10 +124,14 @@ public class AdminMainOps extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
                 .addGap(87, 87, 87)
-                .addComponent(manageStudent)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(manageStudent)
+                    .addComponent(asscEmpBtn))
                 .addGap(49, 49, 49)
                 .addComponent(manageFaculty)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
+                .addGap(47, 47, 47)
+                .addComponent(manageEmp)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                 .addComponent(homeBtn)
                 .addGap(180, 180, 180))
         );
@@ -131,11 +157,28 @@ public class AdminMainOps extends javax.swing.JPanel {
 
     }//GEN-LAST:event_homeBtnActionPerformed
 
+    private void manageEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEmpActionPerformed
+        // TODO add your handling code here:
+        ManageEmployer manageEmployer = new ManageEmployer(userProcessContainer, employerDir, studentDir, facultyDir, courseCatalog);
+        userProcessContainer.add("manageEmployer",manageEmployer);
+        ((CardLayout)userProcessContainer.getLayout()).next(userProcessContainer);
+        
+    }//GEN-LAST:event_manageEmpActionPerformed
+
+    private void asscEmpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asscEmpBtnActionPerformed
+        // TODO add your handling code here:
+        ListAllStudentsJPanel listAllStudentsJPanel = new ListAllStudentsJPanel(userProcessContainer, studentDir, employerDir);
+        this.userProcessContainer.add("listAllStudentsJPanel",listAllStudentsJPanel);
+        ((CardLayout)userProcessContainer.getLayout()).next(userProcessContainer);
+    }//GEN-LAST:event_asscEmpBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton asscEmpBtn;
     private javax.swing.JButton homeBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton manageEmp;
     private javax.swing.JButton manageFaculty;
     private javax.swing.JButton manageStudent;
     // End of variables declaration//GEN-END:variables

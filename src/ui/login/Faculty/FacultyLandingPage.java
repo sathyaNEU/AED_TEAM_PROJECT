@@ -58,6 +58,7 @@ public class FacultyLandingPage extends javax.swing.JPanel {
         refreshBtn = new javax.swing.JButton();
         manageScheduleBtn = new javax.swing.JButton();
         btnViewProfileDetails = new javax.swing.JButton();
+        viewEmpFeedBackBtn = new javax.swing.JButton();
 
         jLabel1.setText("Welcome");
 
@@ -116,6 +117,13 @@ public class FacultyLandingPage extends javax.swing.JPanel {
             }
         });
 
+        viewEmpFeedBackBtn.setText("View Employer Feedbacks");
+        viewEmpFeedBackBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewEmpFeedBackBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,51 +137,56 @@ public class FacultyLandingPage extends javax.swing.JPanel {
                         .addGap(44, 44, 44)
                         .addComponent(editCourseBtn)
                         .addGap(45, 45, 45)
-                        .addComponent(manageScheduleBtn))
+                        .addComponent(manageScheduleBtn)
+                        .addGap(44, 44, 44)
+                        .addComponent(viewEmpFeedBackBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(refreshBtn)
-                                    .addComponent(btnViewProfileDetails))
-                                .addGap(36, 36, 36)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ratingTextArea)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(258, 258, 258)
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(welcomeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(refreshBtn)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(ratingTextArea))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(81, 81, 81)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(30, 30, 30))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(81, 81, 81)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(312, Short.MAX_VALUE))
+                                .addComponent(btnViewProfileDetails)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(welcomeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(204, 204, 204))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(welcomeLbl)
-                        .addGap(27, 27, 27)
+                        .addGap(56, 56, 56)
                         .addComponent(ratingTextArea)
                         .addGap(66, 66, 66)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(btnViewProfileDetails))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnViewProfileDetails)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(welcomeLbl))
+                            .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(refreshBtn)))
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createCourseBtn)
                     .addComponent(editCourseBtn)
-                    .addComponent(manageScheduleBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                    .addComponent(manageScheduleBtn)
+                    .addComponent(viewEmpFeedBackBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
                 .addComponent(backBtn)
                 .addGap(145, 145, 145))
         );
@@ -226,6 +239,13 @@ public class FacultyLandingPage extends javax.swing.JPanel {
         ((CardLayout) this.userProcessContainer.getLayout()).next(userProcessContainer);
     }//GEN-LAST:event_btnViewProfileDetailsActionPerformed
 
+    private void viewEmpFeedBackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewEmpFeedBackBtnActionPerformed
+        // TODO add your handling code here:
+        ViewEmpFeedbackJPanel viewEmpFeedbackJPanel = new ViewEmpFeedbackJPanel(userProcessContainer, faculty);
+        this.userProcessContainer.add("viewEmpFeedbackJPanel",viewEmpFeedbackJPanel);
+        ((CardLayout)this.userProcessContainer.getLayout()).next(this.userProcessContainer);
+    }//GEN-LAST:event_viewEmpFeedBackBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
@@ -238,6 +258,7 @@ public class FacultyLandingPage extends javax.swing.JPanel {
     private javax.swing.JTable profSpecTable;
     private javax.swing.JLabel ratingTextArea;
     private javax.swing.JButton refreshBtn;
+    private javax.swing.JButton viewEmpFeedBackBtn;
     private javax.swing.JLabel welcomeLbl;
     // End of variables declaration//GEN-END:variables
 

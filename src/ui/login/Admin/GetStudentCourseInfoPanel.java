@@ -291,7 +291,8 @@ public class GetStudentCourseInfoPanel extends javax.swing.JPanel {
             courseIdTextField.setText(String.valueOf(this.course.getCourseId()));
             courseNameTextField.setText(this.course.getCourseName());
             gpaTextField.setText(this.student.getTranscript().getGrade().get(String.valueOf(this.course.getCourseId())));
-            
+            Object selectedItem = tblCourseDetails.getValueAt(index, 4);
+            statusComboBox.setSelectedItem(selectedItem);
         }
 
 

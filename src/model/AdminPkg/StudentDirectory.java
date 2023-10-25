@@ -39,6 +39,10 @@ public class StudentDirectory {
                 return true;
         return false;
     }
+    
+    public ArrayList<Student> getStudentDirectory(){
+        return this.studentDir;
+    }
   
     
 }

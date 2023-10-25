@@ -13,13 +13,18 @@ import model.CoursePkg.Course;
 public class Transcript {
     HashMap<String, String> grade;
     HashMap<String, String> course_status;
-    String out;
+    String cgpa;
     Student student;
       
     public Transcript(Student student){
         grade = new HashMap<>();
         course_status = new HashMap<>();
-        this.student = student;      
+        this.student = student;
+        cgpa="code not implemented";
+    }
+
+    public String getCgpa() {
+        return cgpa;
     }
 
     public Student getStudent() {

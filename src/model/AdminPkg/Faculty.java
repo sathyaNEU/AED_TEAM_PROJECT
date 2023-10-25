@@ -20,12 +20,23 @@ public class Faculty {
     String pwd;
     int rating;
     ArrayList<MeetTimeSchedule> meetTimeScheduleList;
+    ArrayList<EmpMsgs> empFeedbacks;
     Boolean isAccActive;
     Boolean isAuthToUpdateInfo;
+
+    public ArrayList<EmpMsgs> getEmpFeedbacks() {
+        return empFeedbacks;
+    }
+    
+    public void setEmpFeedback(EmpMsgs emp_msg){
+        this.empFeedbacks.add(emp_msg);
+    }
+
 
     public Faculty() {
         rating = 0;
         meetTimeScheduleList = new ArrayList<>();
+        empFeedbacks = new ArrayList<>();
         isAccActive = true;
         isAuthToUpdateInfo = false;
     }

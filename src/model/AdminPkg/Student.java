@@ -28,15 +28,36 @@ public class Student {
     ArrayList<MeetTimeSchedule> apptSchedule;
      // "FAIL PURSUING PASS"
     Transcript transcript;
+    Employer employer;
+    Boolean isEmployed;
+    HashMap<Boolean,Employer> employment_status;
 
 
 
     public Student() {
         courseList = new ArrayList<>();
         apptSchedule = new ArrayList<>();
+        this.employer=null;
+        this.isEmployed = false;
         transcript = new Transcript(this);
         isAccActive = true;
         isAuthToUpdateInfo = false;
+    }
+
+    public Employer getEmployer() {
+        return employer;
+    }
+
+    public void setEmployer(Employer employer) {
+        this.employer = employer;
+    }
+
+    public Boolean getIsEmployed() {
+        return isEmployed;
+    }
+
+    public void setIsEmployed(Boolean isEmployed) {
+        this.isEmployed = isEmployed;
     }
 
     public Transcript getTranscript() {

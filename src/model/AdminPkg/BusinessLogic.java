@@ -12,11 +12,13 @@ public class BusinessLogic {
 
     StudentDirectory studentDir;
     FacultyDirectory facultyDir;
+    EmployerDirectory employerDir;
 
-    public BusinessLogic(StudentDirectory studentDir, FacultyDirectory facultyDir) {
+    public BusinessLogic(StudentDirectory studentDir, FacultyDirectory facultyDir, EmployerDirectory employerDir) {
 
         this.studentDir = studentDir;
         this.facultyDir = facultyDir;
+        this.employerDir = employerDir;
 
         Student student = new Student();
         student.setDomain("SES");
@@ -33,6 +35,19 @@ public class BusinessLogic {
         faculty.setPwd("ftest");
         this.facultyDir.addFacultyToFacultyDir(faculty);
         System.out.println("Profile created for : " + faculty);
+        
+        Employer employer = new Employer();
+        employer.setEmp_id("etest");
+        employer.setEmp_name("Test Employer");
+        employer.setPwd("etest");
+        employer.setOrg("A Company");
+        this.employerDir.addEmployerToEmployerDirectory(employer);
+        System.out.println("Profile created for : " + employer);
+        
+        
+        
+        
+        
     }
 
 }

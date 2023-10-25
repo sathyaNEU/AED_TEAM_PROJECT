@@ -25,6 +25,7 @@ public class MainJFrame extends javax.swing.JFrame {
     
     StudentDirectory studentDir;
     FacultyDirectory facultyDir;
+    EmployerDirectory employerDir;
     CourseCatalog courseCatalog;
     
     
@@ -33,7 +34,8 @@ public class MainJFrame extends javax.swing.JFrame {
         studentDir = new StudentDirectory();
         facultyDir = new FacultyDirectory();
         courseCatalog = new CourseCatalog();
-        BusinessLogic bl = new BusinessLogic(studentDir, facultyDir);
+        employerDir = new EmployerDirectory();
+        BusinessLogic bl = new BusinessLogic(studentDir, facultyDir, employerDir);
         Semester.setSemester("f23");
     }
 
@@ -137,7 +139,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void AdminLoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminLoginBtnActionPerformed
         // TODO add your handling code here:
-         AdminLoginPage adminLoginPage = new AdminLoginPage(userProcessContainer,studentDir,facultyDir,courseCatalog);
+         AdminLoginPage adminLoginPage = new AdminLoginPage(userProcessContainer,studentDir,facultyDir,employerDir,courseCatalog);
          this.userProcessContainer.add("adminLoginPage",adminLoginPage);
          CardLayout cardLayout = (CardLayout)userProcessContainer.getLayout();
          cardLayout.next(userProcessContainer);
@@ -163,7 +165,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void employerLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employerLoginActionPerformed
         // TODO add your handling code here:
-        EmployerLoginPage employerLoginPage = new EmployerLoginPage(userProcessContainer, studentDir, facultyDir, courseCatalog);
+        EmployerLoginPage employerLoginPage = new EmployerLoginPage(userProcessContainer, studentDir, facultyDir, employerDir, courseCatalog);
         userProcessContainer.add("EmployerLoginPage",employerLoginPage);
         ((CardLayout)userProcessContainer.getLayout()).next(userProcessContainer);
     }//GEN-LAST:event_employerLoginActionPerformed
